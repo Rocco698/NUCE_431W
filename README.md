@@ -18,12 +18,11 @@ Supervisor - Dr. Andrei Khodak
 
 ## The Project
 
-
-Questions we need answers to:
-
-- What exactly is our goal?
-- What are our limitations?
-- Are any speciality codes/software needed for this project?
-- What tools are we given/need?
-- How will you measure our progress/success?
-- Generally, what knobs can we turn?
+With the intention for the spherical tokamak advanced reactor (STAR) to generate energy; It uses a D-T reaction to generate high-energy neutrons. 
+However, there are multiple issues associated with the use of tritium in this reaction. The first is that tritium has a relatively short half-life of 2 years,
+which makes it difficult to accumulate and store for this reaction. Second, the energy emitted in this reaction is mostly transferred to the emitted neutron,
+leading to extremely high energy neutrons, 14 MeV. To resolve these issues, lithium-6 is used with a neutron source to produce both tritium and a small
+number of neutrons. This occurs within the blanket, which contains the lithium-6 to breed tritium. Once the D-T reaction occurs, the kinetic energy of the 14
+MeV neutrons must be converted to a more useful energy form. The current moderator of choice, within the blanket, is lead.
+The primary focus of our work is optimizing the blanket's configuration to promote tritium production for this D-T reaction. The secondary focus is the
+optimization of the neutron shield to protect other components and personnel.

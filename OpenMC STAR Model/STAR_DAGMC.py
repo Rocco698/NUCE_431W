@@ -39,7 +39,7 @@ B4C={'B':{'percent': 80},
 breed=openmc.Material(LiPb)
 shield=openmc.Materal(B4C)
 
-mat_list= openmc.Materials([])
+mat_list= openmc.Materials([breed,shield])
 mat_list.export_to_xml()
 
 print(mat_list)
@@ -81,7 +81,7 @@ p.origin = (0.0, 0.0, 0.0)
 p.width = (30.0, 20.0)
 p.pixels = (450, 300)
 p.color_by = 'material'
-p.colors = {iron: 'gray', water: 'blue'}
+p.colors = {shield: 'gray', breed: 'blue'}
 openmc.plot_inline(p)
 
 #ww = 15

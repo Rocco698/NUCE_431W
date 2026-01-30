@@ -29,21 +29,19 @@ def download(url):
 #       MATERIALS
 # ##############################################
 
+breed_mat.add_element('Li', 1.0, 'ao')
+breed_mat.add_element('Pb', 1.0, 'ao')
+breed_mat.set_density('g/cm3', 11.87)
 
-LiPb={'Li':{'percent': 17, #atomic percent
-            'enrichment': 100,
-            'enrichment_target': 'Li6'},
-      'Pb':{'percent': 83}
-B4C={'B':{'percent': 80},
-     'C':{'percent': 20}
-breed=openmc.Material(LiPb)
-shield=openmc.Materal(B4C)
+shield_mat.add_element('B', 1.0, 'ao')
+shield_mat.add_element('C', 1.0, 'ao')
+shield_mat.set_density('g/cm3', 2.5)
 
-mat_list= openmc.Materials([breed,shield])
+mat_list= openmc.Materials([breed_mat, shield_mat])
 mat_list.export_to_xml()
 
-print(mat_list)
 mat_list.cross_sections = "/storage/work/irj5023/NUCE403/endfb-viii.0-hdf5/cross_sections.xml"
+print('materials export success')
 
 
 # ################################################

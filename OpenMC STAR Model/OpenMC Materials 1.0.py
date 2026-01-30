@@ -23,6 +23,7 @@ Breeder_material.set_density('g/cm3',9.5)
     ##FLiBe
 Breeder_material.add_element('F',4.0,'ao')
 Breeder_material.add_element('Li',2.0,'ao')
+#Breeder_material.add_element('Li',2.0,enrichment=92,enrichment_target='Li6')
 Breeder_material.add_element('Be',1.0,'ao')
 Breeder_material.set_density('g/cm3',1.94)
     ##Li

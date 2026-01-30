@@ -26,3 +26,9 @@ number of neutrons. This occurs within the blanket, which contains the lithium-6
 MeV neutrons must be converted to a more useful energy form. The current moderator of choice, within the blanket, is lead.
 The primary focus of our work is optimizing the blanket's configuration to promote tritium production for this D-T reaction. The secondary focus is the
 optimization of the neutron shield to protect other components and personnel.
+
+## CAD_TO_OPENMC Workflow Guide
+
+This guide aims to provide a clean and repeatable workflow for using the CAD_TO_OPENMC commands. The official documentation for CAD_TO_OPENMC can be found [here](https://github.com/united-neux/CAD_to_OpenMC). 
+
+# How to use CAD_TO_OPENMC

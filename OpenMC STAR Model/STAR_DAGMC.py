@@ -82,7 +82,9 @@ p.width = (30.0, 20.0)
 p.pixels = (450, 300)
 p.color_by = 'material'
 p.colors = {shield: 'gray', breed: 'blue'}
-openmc.plot_inline(p)
+plots = openmc.Plots([p])
+plots.export_to_xml()
+openmc.plot_geometry()
 
 #ww = 15
 #plot1 = openmc.Plot()

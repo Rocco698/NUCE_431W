@@ -1,7 +1,7 @@
 PWD /Users/rocco698/Desktop/Undergrad/Spring 2026/NUCE_431W/NUCE_431W/Weekly Progress Reports/Rocco/January_28
 INPUT /usr/local/texlive/2025/texmf-var/web2c/luahbtex/lualatex.fmt
-INPUT /Users/rocco698/Desktop/Undergrad/Spring 2026/NUCE_431W/NUCE_431W/Weekly Progress Reports/Rocco/January_28/Januray_28.tex
-OUTPUT Januray_28.log
+INPUT /Users/rocco698/Desktop/Undergrad/Spring 2026/NUCE_431W/NUCE_431W/Weekly Progress Reports/Rocco/January_28/January_28.tex
+OUTPUT January_28.log
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/tex-ini-files/lualatexquotejobname.lua
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/base/ltluatex.lua
 INPUT /usr/local/texlive/2025/texmf-dist/tex/luatex/luaotfload/luaotfload-main.lua
@@ -102,8 +102,8 @@ INPUT /Users/rocco698/Library/texlive/2025/texmf-var/luatex-cache/generic/fonts/
 INPUT /Users/rocco698/Library/texlive/2025/texmf-var/luatex-cache/generic/fonts/otl/arial-bold-italic.luc
 INPUT /Users/rocco698/Library/texlive/2025/texmf-var/luatex-cache/generic/fonts/otl/arial-bold.luc
 INPUT /Users/rocco698/Library/texlive/2025/texmf-var/luatex-cache/generic/fonts/otl/arial-italic.luc
-INPUT ./Januray_28.aux
-OUTPUT Januray_28.aux
+INPUT ./January_28.aux
+OUTPUT January_28.aux
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi7.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi5.tfm
@@ -114,6 +114,6 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr7.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr5.tfm
-OUTPUT Januray_28.pdf
+OUTPUT January_28.pdf
 INPUT /usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT ./Januray_28.aux
+INPUT ./January_28.aux

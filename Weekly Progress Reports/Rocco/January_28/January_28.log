@@ -1,8 +1,8 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2025.7.29)  27 JAN 2026 16:23
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2025.7.29)  30 JAN 2026 14:10
  restricted system commands enabled.
  file:line:error style messages enabled.
-**"/Users/rocco698/Desktop/Undergrad/Spring 2026/NUCE_431W/NUCE_431W/Weekly Progress Reports/Rocco/January_28/Januray_28.tex"
-("/Users/rocco698/Desktop/Undergrad/Spring 2026/NUCE_431W/NUCE_431W/Weekly Progress Reports/Rocco/January_28/Januray_28.tex"
+**"/Users/rocco698/Desktop/Undergrad/Spring 2026/NUCE_431W/NUCE_431W/Weekly Progress Reports/Rocco/January_28/January_28.tex"
+("/Users/rocco698/Desktop/Undergrad/Spring 2026/NUCE_431W/NUCE_431W/Weekly Progress Reports/Rocco/January_28/January_28.tex"
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-07-19>
 Lua module: luaotfload 2024-12-03 v3.29 Lua based OpenType font support
@@ -293,8 +293,8 @@ Package fontspec Info:
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.:
 (fontspec)             <->"name:Arial/BI:mode=node;script=latn;language=dflt;+tlig;"
 
- (./Januray_28.aux)
-\openout1 = Januray_28.aux
+ (./January_28.aux)
+\openout1 = January_28.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
 LaTeX Font Info:    ... okay on input line 30.
@@ -413,7 +413,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 [1
 
-{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./Januray_28.aux)
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./January_28.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-07-19>
@@ -425,12 +425,12 @@ Here is how much of LuaTeX's memory you used:
  100000,662416 words of node,token memory allocated
  471 words of node memory still in use:
    4 hlist, 1 vlist, 1 rule, 2 glue, 3 kern, 2 glyph, 5 attribute, 57 glue_spec, 5 attribute_list, 1 write nodes
-   avail lists: 2:473,3:132,4:12,5:60,6:66,7:1968,8:1,9:482,10:11,11:88
+   avail lists: 2:521,3:136,4:12,5:71,6:70,7:2158,8:1,9:512,10:11,11:106
  33345 multiletter control sequences out of 65536+600000
  46 fonts using 11026183 bytes
  73i,10n,92p,339b,330s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </System/Library/Fonts/Supplemental/Arial.ttf></System/Library/Fonts/Supplemental/Arial Bold.ttf>
-Output written on Januray_28.pdf (1 page, 52547 bytes).
+Output written on January_28.pdf (1 page, 53158 bytes).
 
 PDF statistics: 22 PDF objects out of 1000 (max. 8388607)
  12 compressed objects within 1 object stream

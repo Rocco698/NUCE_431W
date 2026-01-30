@@ -29,6 +29,16 @@ def download(url):
 #       MATERIALS
 # ##############################################
 
+
+LiPb={'Li':{'percent': 17, #atomic percent
+            'enrichment': 100,
+            'enrichment_target': 'Li6'},
+      'Pb':{'percent': 83}
+B4C={'B':{'percent': 80},
+     'C':{'percent': 20}
+breed=openmc.Material(LiPb)
+shield=openmc.Materal(B4C)
+
 mat_list= openmc.Materials([])
 mat_list.export_to_xml()
 

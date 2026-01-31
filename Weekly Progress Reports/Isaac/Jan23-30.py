@@ -22,7 +22,7 @@
 %\usepackage{pgfplotstable}
 %\usepgfplotslibrary{statistics}
 %\pgfplotsset{compat=1.18}
-\setmainfont{Arial}
+%\setmainfont{Arial}
 
 %cSpell:ignore Lombardo Brodee NUCE Geuther Ortec Canberra Tektronix Trifluoride Thermalization Epithermal LINEST Neutronics
 
@@ -32,18 +32,14 @@
 
 \subsection*{Weekly Progress Report}
 
-\subsubsection*{Jan/18/2026 - Jan/24/2026}}
+\subsubsection*{Jan/23/2026 - Jan/30/2026}}
 
 
 \hrulefill
 
 \bigskip
 
-\textbf{Project Manager(s):} Rocco Lombardo ral5748@psu.edu
-
-\bigskip
-
-\textbf{Submitter:} Vasil Ivakimov vai5027@psu.edu
+\textbf{Submitter:} Issac James irj5023@psu.edu
 
 \bigskip
 
@@ -59,9 +55,7 @@
     \hline
     \textbf{Milestones} & \textbf{Planned Date} & \textbf{Actual Date} & \textbf{Comments} \\
     \hline
-    Meet with Dr. Khodak to expand on project details  & Jan/21/2026  & Jan/21/2026 & Went smoothly, we now know what aspects we are working on  \\
-    \hline
-    Develop presentation for class on Friday & Before Jan/23/2026 & MM/DD/YYYY & Devoured the universe \\
+    Import the CAD file into OpenMC & All week & In Progress & This is trickier than previously thought \\
     \hline
     \end{tabularx}
 \end{table}
@@ -81,9 +75,9 @@
     \textbf{General Description} & \textbf{Comments} \\
     \hline
     Meet with Dr. Khodak to expand on project details  & 
-    Received the CAD design for blanket/shielding. Also discussed the limitations of the problem we are given by Dr. Khodak. \\
+    The meeting was short, but we did talk about comparing initial results of model with previous work. The work was done by Dr. Jin? \\
     \hline
-    Presentation for Friday & Outlined the scope of the project for the class. \\
+    Importing CAD file & There seems to be no simple module or program to import CAD files into OpenMC. This has caused us to look into two methods, one of which we have determined impossible to do. Currently trying to edit code to get OpenMC to function with the mesh file. Work in progress \\
     \hline
     \end{tabularx}
 \end{table}
@@ -100,7 +94,7 @@
     \hline
     \textbf{General Description} & \textbf{Comments} \\
     \hline
-    Model blanket/shield in OPENMC  & Will want to make the OPENMC model before Wednesday of next week. \\
+    Get the damn CAD to work in OpenMC  & Trying to do before Wednesday of next week. \\
     %\hline
     %Ex. - Created Black Hole & Random \\
     \hline

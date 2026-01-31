@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+%\usepackage{graphicx}
+%\usepackage{caption}
+%\usepackage{cancel}
+%\usepackage{amsmath}
+%\usepackage{mathrsfs}
+\usepackage{ulem}
+%\usepackage[version=4]{mhchem}
+\usepackage{comment}
+%\usepackage{float}
+\usepackage{enumitem}
+\usepackage{soul}
+\usepackage{float}
+%\usepackage{siunitx}
+\usepackage{tabularx}
+%\usepackage{bm}
+\usepackage{multicol}
+%\usepackage{mathtools}
+%\usepackage{fontspec}
+%\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+%\usepgfplotslibrary{statistics}
+%\pgfplotsset{compat=1.18}
+\setmainfont{Arial}
+
+%cSpell:ignore Lombardo Brodee NUCE Geuther Ortec Canberra Tektronix Trifluoride Thermalization Epithermal LINEST Neutronics
+
+\begin{document}
+
+{\centering \section*{NUCE 431W: Neutronics of a Fusion Plant}
+
+\subsection*{Weekly Progress Report}
+
+\subsubsection*{Jan/18/2026 - Jan/24/2026}}
+
+
+\hrulefill
+
+\bigskip
+
+\textbf{Project Manager(s):} Rocco Lombardo ral5748@psu.edu
+
+\bigskip
+
+\textbf{Submitter:} Vasil Ivakimov vai5027@psu.edu
+
+\bigskip
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{0.95\textwidth} { 
+        | >{\centering\arraybackslash}X 
+        | >{\centering\arraybackslash}X 
+        | >{\centering\arraybackslash}X
+        | >{\centering\arraybackslash}X | }
+
+    \hline
+    \textbf{Milestones} & \textbf{Planned Date} & \textbf{Actual Date} & \textbf{Comments} \\
+    \hline
+    Meet with Dr. Khodak to expand on project details  & Jan/21/2026  & Jan/21/2026 & Went smoothly, we now know what aspects we are working on  \\
+    \hline
+    Develop presentation for class on Friday & Before Jan/23/2026 & MM/DD/YYYY & Devoured the universe \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\bigskip
+
+\textbf{Accomplished This Week: }
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{0.95\textwidth} { 
+        | >{\centering\arraybackslash}X
+        | >{\centering\arraybackslash}X | }
+
+    \hline
+    \textbf{General Description} & \textbf{Comments} \\
+    \hline
+    Meet with Dr. Khodak to expand on project details  & 
+    Received the CAD design for blanket/shielding. Also discussed the limitations of the problem we are given by Dr. Khodak. \\
+    \hline
+    Presentation for Friday & Outlined the scope of the project for the class. \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\textbf{Planned for Next Week: }
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{0.95\textwidth} { 
+        | >{\centering\arraybackslash}X
+        | >{\centering\arraybackslash}X | }
+
+    \hline
+    \textbf{General Description} & \textbf{Comments} \\
+    \hline
+    Model blanket/shield in OPENMC  & Will want to make the OPENMC model before Wednesday of next week. \\
+    %\hline
+    %Ex. - Created Black Hole & Random \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+
+\end{document}

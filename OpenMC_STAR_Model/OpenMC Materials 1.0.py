@@ -37,7 +37,7 @@ Breeder_material.add_element('Si',1.0,'ao')
 Breeder_material.add_element('O',4.0,'ao')
 Breeder_material.set_density('g/cm3',2.35)
 #Coolant-He (8MPA)
-Coolant_material.add_element('He',1.0,'ao')
+Coolant_material.add_element('He2',1.0,'ao')
 Coolant_material.set_density('kg/m3',5.0)
 
 

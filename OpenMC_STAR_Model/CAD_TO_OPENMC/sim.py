@@ -2,7 +2,7 @@
 
 import CAD_to_OpenMC.assembly as ab
 
-A=ab.Assembly(['default.step'])
+A=ab.Assembly(['STAR5_214.STEP'])
 ab.mesher_config['threads']=1
 ab.mesher_config['tolerance']=1e-2
 ab.mesher_config['angular_tolerance']=1e-2

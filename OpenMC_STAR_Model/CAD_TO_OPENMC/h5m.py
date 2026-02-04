@@ -1,4 +1,6 @@
 # cSpell: Disable
+
+# NOTICE: This file will not work unless you move all of the .stl files to the CAD_TO_OPENMC directory! They were only moved to a dedicated folder for cosmetic purposes. If you plan on running this code, move all 74 .stls to CAD_TO_OPENMC first. When finished, put them back!
 from stl_to_h5m import stl_to_h5m
 
 stl_to_h5m(

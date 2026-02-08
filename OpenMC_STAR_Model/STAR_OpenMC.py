@@ -6,6 +6,7 @@ import os
 import openmc # openMC
 import matplotlib.pyplot as plt # plotting tools
 from IPython.display import Image
+from openmc_plasma_source import tokamak_source # Ring source, make sure to download: pip install openmc_plasma_source
 # ##############################################
 # IMPORT THE FILE FUNCTION
 # ##############################################
@@ -28,16 +29,45 @@ def download(url):
 # ##############################################
 #       MATERIALS
 # ##############################################
+#Material Initialization
+Steel_material = openmc.Material(name='Steel-EUROFER97')
+Shielding_material = openmc.Material(name='Shielding-B4C')
+Breeder_material = openmc.Material(name='Breeder-PbLi')
+Coolant_material = openmc.Material(name='Coolant-He (8MPA)')
 
-breed_mat.add_element('Li', 1.0, 'ao')
-breed_mat.add_element('Pb', 1.0, 'ao')
-breed_mat.set_density('g/cm3', 11.87)
+#Steel-EUROFER97
+Steel_material.mix_materials([Fe,C,Cr,W,Mn,Ta,N2],[0.8924,0.0011,0.09,0.011,0.004,0.0012,0.0003],'wo')
+#Shielding-B4C
+Shielding_material.add_element('B',4.0,'ao')
+Shielding_material.add_element('C',1.0,'ao')
+Shielding_material.set_density('g/cm3',2.50)
+#List of Breeders-PbLi/FLiBe/Li/Li4SiO4
+    ##PbLi
+Breeder_material.add_element('Pb',0.83,'ao')
+Breeder_material.add_element('Li',0.17,'ao')
+#Breeder_material.add_element('Li',0.17,enrichment=92,enrichment_target='Li6')
+Breeder_material.set_density('g/cm3',9.5)
+    ##FLiBe
+Breeder_material.add_element('F',4.0,'ao')
+Breeder_material.add_element('Li',2.0,'ao')
+#Breeder_material.add_element('Li',2.0,enrichment=92,enrichment_target='Li6')
+Breeder_material.add_element('Be',1.0,'ao')
+Breeder_material.set_density('g/cm3',1.94)
+    ##Li
+Breeder_material.add_element('Li',1.0,'ao')
+#Breeder_material.add_element('Li',1.0,enrichment=92,enrichment_target='Li6')
+Breeder_material.set_density('g/cm3',0.534)
+    ##Li4SiO4
+Breeder_material.add_element('Li',4.0,'ao')
+#Breeder_material.add_element('Li',4.0,enrichment=92,enrichment_target='Li6')
+Breeder_material.add_element('Si',1.0,'ao')
+Breeder_material.add_element('O',4.0,'ao')
+Breeder_material.set_density('g/cm3',2.35)
+#Coolant-He (8MPA)
+Coolant_material.add_element('He2',1.0,'ao')
+Coolant_material.set_density('kg/m3',5.0)
 
-shield_mat.add_element('B', 1.0, 'ao')
-shield_mat.add_element('C', 1.0, 'ao')
-shield_mat.set_density('g/cm3', 2.5)
-
-mat_list= openmc.Materials([breed_mat, shield_mat])
+mat_list= openmc.Materials([Steel_material, Shielding_material, Breeder_material, Coolant_material])
 mat_list.export_to_xml()
 
 mat_list.cross_sections = "/storage/work/irj5023/NUCE403/endfb-viii.0-hdf5/cross_sections.xml"
@@ -53,6 +83,32 @@ print(geometry)
 print(mat_list)
 
 # #################################################
+#       SOURCE DEFINITION
+# #################################################
+# Heavy use of code from: https://github.com/fusion-energy/openmc-plasma-source/blob/main/examples/tokamak_source_example.py
+# Needs proper values still (8 Feb)
+onion_rings = tokamak_source(
+    elongation=1.557,
+    ion_density_centre=1.09e20,
+    ion_density_pedestal=1.09e20,
+    ion_density_peaking_factor=1,
+    ion_density_separatrix=3e19,
+    ion_temperature_centre=45.9e3,
+    ion_temperature_pedestal=6.09e3,
+    ion_temperature_separatrix=0.1e3,
+    ion_temperature_peaking_factor=8.06,
+    ion_temperature_beta=6,
+    major_radius=906,
+    minor_radius=292.258,
+    pedestal_radius=0.8 * 292.258,
+    mode="H",
+    shafranov_factor=0.44789,
+    triangularity=0.270,
+    fuel={"D": 0.5, "T": 0.5},
+)
+
+
+# #################################################
 #       TALLIES
 # #################################################
 
@@ -61,10 +117,12 @@ print(mat_list)
 ###############################################################################
 
 settings = openmc.Settings()
+settings.run_mode = "fixed source"
 settings.dagmc = True
 settings.batches = 10
 settings.inactive = 2
 settings.particles = 5000
+settings.source = onion_rings
 settings.export_to_xml()
 
 print(settings)

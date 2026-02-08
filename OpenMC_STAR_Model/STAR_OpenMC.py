@@ -12,7 +12,7 @@ from openmc_plasma_source import tokamak_source # Ring source, make sure to down
 # ##############################################
 import urllib.request
 
-blanket_shielding_url = 'https://tinyurl.com/mur2cnn2' # 1.2 MB
+STARmodel_url = 'https://tinyurl.com/8j4hfy2b' # 1.2 MB
 def download(url):
     """
     Helper function for retrieving dagmc models
@@ -78,7 +78,7 @@ print('materials export success')
 #       GEOMETRY DEFINITION
 # ################################################
 
-download(blanket_shielding_url)
+download(STARmodel_url)
 print(geometry)
 print(mat_list)
 

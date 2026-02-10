@@ -51,7 +51,7 @@ For cad_to_OpenMC, you will need MOAB (Mesh Oriented datABase). To install, run 
 
 ### Step 2: Build MOAB using CMake
 
-MOAB is written in C++. For MOAB to work, you must instruct your compiler on how to build and compile the project. This is simplified using CMake. For this, make sure you have a modern C/C++ compiler like GCC or Gnu. Run these commands in order to complete the build (some of these take some time). IMPORTANT: Make sure you `cd` to the `moab` directory! CMake will look to the host directory for its instructions! This will not work unless you are inside the moab directory!
+MOAB is written in C++. For MOAB to work, you must instruct your compiler on how to build and compile the project. This is simplified using CMake. For this, make sure you have a modern C/C++ compiler, like GCC. Run these commands in order to complete the build (some of these take some time). IMPORTANT: Make sure you `cd` to the `moab` directory! CMake will look to the host directory for its instructions! This will not work unless you are inside the moab directory!
 
 - 1. `mkdir build;`
 - 2. `cd build;`

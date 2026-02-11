@@ -35,7 +35,7 @@ This guide aims to provide a clean and repeatable workflow for using the CAD_TO_
 
 ## How to use CAD_TO_OPENMC
 
-cad_to_OpenMC is a little tricky. For reference, the following guide was made outlining installation of the cad_to_OpenMC package and its dependencies on a Macbook Pro M1 (arm64) with macOS Sequoia v15.6.1, in VSCode.
+cad_to_OpenMC is a little tricky. For reference, the following guide was made outlining installation of the cad_to_OpenMC package and its dependencies on a Macbook Pro M1 (arm) with macOS Sequoia v15.6.1, in VSCode.
 
 To begin the installation, a package manager is needed. For Windows, Scoop should do the trick. In the macOS case, homebrew is fine. You will need Python 3.11 or less. (We are building from source)
 

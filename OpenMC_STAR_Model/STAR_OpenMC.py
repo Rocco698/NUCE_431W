@@ -12,7 +12,7 @@ from openmc_plasma_source import tokamak_source # Ring source, make sure to down
 # ##############################################
 import urllib.request
 
-STARmodel_url = 'https://tinyurl.com/8j4hfy2b' # 1.2 MB
+STARmodel_url = 'https://github.com/Rocco698/NUCE_431W/blob/main/OpenMC_STAR_Model/CAD_TO_OPENMC/STAR5_Whole.h5m' # 1.2 MB (Should find the file: STAR5_Whole.h5m)
 def download(url):
     """
     Helper function for retrieving dagmc models
@@ -79,7 +79,10 @@ print('materials export success')
 # ################################################
 
 download(STARmodel_url)
-print(geometry)
+dag_univ = openmc.DAGMCUniverse('dagmc.h5m')
+geometry = openmc.Geometry(dag_univ)
+geometry.export_to_xml()
+print(geometry) #Look into plotting later
 print(mat_list)
 
 # #################################################

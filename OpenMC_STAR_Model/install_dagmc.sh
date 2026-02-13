@@ -9,9 +9,9 @@
 cd $HOME
 mkdir dagmc_bld && cd dagmc_bld
 
-#Install Dependencies
-sudo apt-get update
-sudo apt-get install g++ python3 cmake libeigen3-dev libhdf5-dev libtool libblas-dev liblapack-dev libpng-dev -y
+#Install Dependencies (commented out to not iss off the ROAR gods)
+#sudo apt-get update
+#sudo apt-get install g++ python3 cmake libeigen3-dev libhdf5-dev libtool libblas-dev liblapack-dev libpng-dev -y
 
 #Install MOAB
 mkdir -p MOAB/bld && cd MOAB

@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+%\usepackage{graphicx}
+%\usepackage{caption}
+%\usepackage{cancel}
+%\usepackage{amsmath}
+%\usepackage{mathrsfs}
+\usepackage{ulem}
+%\usepackage[version=4]{mhchem}
+\usepackage{comment}
+%\usepackage{float}
+\usepackage{enumitem}
+\usepackage{soul}
+\usepackage{float}
+%\usepackage{siunitx}
+\usepackage{tabularx}
+%\usepackage{bm}
+\usepackage{multicol}
+%\usepackage{mathtools}
+\usepackage{fontspec}
+\usepackage{censor}
+%\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+%\usepgfplotslibrary{statistics}
+%\pgfplotsset{compat=1.18}
+\setmainfont{Arial}
+
+%cSpell:ignore NUCE Khodak Neutronics OPENMC Blackhole DAGMC Lombardo
+
+\begin{document}
+
+{\centering \section*{NUCE 431W: Neutronics of a Fusion Plant}
+
+\subsection*{Weekly Progress Report}
+
+\subsubsection*{02/04/2026 - 02/12/2026}}
+
+
+\hrulefill
+
+\bigskip
+
+\textbf{Project Manager(s):} (Andrei Khodak) \censor{akhodak@pppl.gov}
+
+\bigskip
+
+\textbf{Submitter:} (Rocco Lombardo) (ral5748@psu.edu)
+
+\bigskip
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{0.95\textwidth} { 
+        | >{\centering\arraybackslash}X 
+        | >{\centering\arraybackslash}X 
+        | >{\centering\arraybackslash}X
+        | >{\centering\arraybackslash}X | }
+
+    \hline
+    \textbf{Milestones} & \textbf{Planned Date} & \textbf{Actual Date} & \textbf{Comments} \\
+    \hline
+    Import .h5m geometry into OpenMC via DAGMC .h5m geometry converter  & Feb/08/2026  & ---- & .h5m is now working. We can now import the geometry successfully.  \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\bigskip
+
+\textbf{Accomplished This Week: }
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{0.95\textwidth} { 
+        | >{\centering\arraybackslash}X
+        | >{\centering\arraybackslash}X | }
+
+    \hline
+    \textbf{General Description} & \textbf{Comments} \\
+    \hline
+    stl\_to\_h5m converter working.  & successfully configured stl\_to\_h5m converter to convert .stl of all parts to one .h5m file. \\
+    \hline
+    Reactor Geometry rebuilt with separate parts. & ---- \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\textbf{Planned for Next Week: }
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{0.95\textwidth} { 
+        | >{\centering\arraybackslash}X
+        | >{\centering\arraybackslash}X | }
+
+    \hline
+    \textbf{General Description} & \textbf{Comments} \\
+    \hline
+    Import geometry into OpenMC  & Attempt to import the geometry into OpenMC via DAGMC \\
+    %\hline
+    %Ex. - Created Black Hole & Random \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+
+\end{document}

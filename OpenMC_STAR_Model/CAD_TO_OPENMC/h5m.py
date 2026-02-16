@@ -90,7 +90,7 @@ stl_to_h5m(
         ('starassm - Passive Plate Top-2.STL', 'Steel_material'),
 
 
-        ('starassm - Plasma-1.STL', 'mat8'), #was mat_8 (make uranium material to update here)
+        ('starassm - Plasma-1.STL', 'Steel_material'), #was mat_8 (make uranium material to update here) (made this steel_material for testing. Will change back to proper later - Rocco 02/16)
 
 
         ('starassm - Shield 97 Steel 3 IB Outer-1.STL', 'Shielding_material'), #was mat_9

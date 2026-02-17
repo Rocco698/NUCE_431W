@@ -4,6 +4,10 @@
 import numpy as np # numerical tools
 import os
 import openmc # openMC
+import openmc.stats # For Plasma source
+from openmc import IndependentSource # For Plasma source
+from typing import Tuple, List, Dict # For Plasma source
+import pandas as pd
 import matplotlib.pyplot as plt # plotting tools
 from IPython.display import Image
 from openmc_plasma_source import tokamak_source # Ring source, make sure to download: pip install openmc_plasma_source
@@ -90,25 +94,50 @@ print(mat_list)
 # #################################################
 # Heavy use of code from: https://github.com/fusion-energy/openmc-plasma-source/blob/main/examples/tokamak_source_example.py
 # Needs proper values still (8 Feb)
-onion_rings = tokamak_source(
-    elongation=1.557,
-    ion_density_centre=1.09e20,
-    ion_density_pedestal=1.09e20,
-    ion_density_peaking_factor=1,
-    ion_density_separatrix=3e19,
-    ion_temperature_centre=45.9e3,
-    ion_temperature_pedestal=6.09e3,
-    ion_temperature_separatrix=0.1e3,
-    ion_temperature_peaking_factor=8.06,
-    ion_temperature_beta=6,
-    major_radius=906,
-    minor_radius=292.258,
-    pedestal_radius=0.8 * 292.258,
-    mode="H",
-    shafranov_factor=0.44789,
-    triangularity=0.270,
-    fuel={"D": 0.5, "T": 0.5},
-)
+def fusion_ring_source(
+    radius: float,
+    angles: Tuple[float, float] = (0, 2 * np.pi),
+    z_placement: float = 0,
+    fuel: Dict = {"D": 0.5, "T": 0.5}):
+    """Creates a list of openmc.IndependentSource objects in a ring shape.
+
+    Useful for simulations where all the plasma parameters are not known and
+    this simplified geometry will suffice. Resulting ring source will have an
+    energy distribution according to the fuel composition.
+    Args:
+        radius: the inner radius of the ring source, in metres
+        angles: the start and stop angles of the ring in radians
+        z_placement: Location of the ring source (m). Defaults to 0.
+        temperature: Temperature of the source (eV). #Unused#
+        fuel: Isotopes as keys and atom fractions as values
+    Returns:
+        A list of one openmc.IndependentSource instance.
+    """
+    if not isinstance(radius, (int, float)) or radius <= 0:
+        raise ValueError("Radius must be a float strictly greater than 0.")
+    if not (
+        isinstance(angles, tuple)
+        and len(angles) == 2
+        and all(
+            isinstance(angle, (int, float)) and -2 * np.pi <= angle <= 2 * np.pi
+            for angle in angles
+        )
+    ):
+        raise ValueError("Angles must be a tuple of floats between zero and 2 * np.pi")
+    if not isinstance(z_placement, (int, float)):
+        raise TypeError("Z placement must be a float.")
+    #if not (isinstance(temperature, (int, float)) and temperature > 0): #Temp not used, assumed 14 MeV
+        #raise ValueError("Temperature must be a float strictly greater than 0.")
+    source = IndependentSource()
+    source.space = openmc.stats.CylindricalIndependent(
+        r=openmc.stats.Discrete([radius], [1]),
+        phi=openmc.stats.Uniform(a=angles[0], b=angles[1]),
+        z=openmc.stats.Discrete([z_placement], [1]),
+        origin=(0.0, 0.0, 0.0) )
+    source.energy =openmc.stats.Discrete([14.0e6], [1.0]) # (14 MeV neutrons, 100% distribution)
+    source.angle = openmc.stats.Isotropic()
+    return [source]
+
 
 
 # #################################################
@@ -125,11 +154,10 @@ settings.dagmc = True
 settings.batches = 10
 settings.inactive = 2
 settings.particles = 5000
-settings.source = onion_rings
+settings.source = fusion_ring_source(...) #Need to do for loop
 settings.export_to_xml()
 
 print(settings)
-
 
 # ################################
 #  Plots Definition
@@ -153,7 +181,6 @@ openmc.plot_geometry()
 #plot1.filename = 'RadialView'
 #plots = openmc.Plots([plot1])
 #plots.export_to_xml()
-
 
 # Set the environment variable for cross sections
 os.environ["OPENMC_CROSS_SECTIONS"] = "/data/endfb-viii.0-hdf5/cross_sections.xml"

@@ -7,14 +7,16 @@ import openmc # openMC
 import openmc.stats # For Plasma source
 from openmc import IndependentSource # For Plasma source
 from typing import Tuple, List, Dict # For Plasma source
-import pandas as pd
+import pandas as pd # For Excel
+import os # For Excel
 import matplotlib.pyplot as plt # plotting tools
 from IPython.display import Image
 from openmc_plasma_source import tokamak_source # Ring source, make sure to download: pip install openmc_plasma_source
+import urllib.request
 # ##############################################
 # IMPORT THE FILE FUNCTION
 # ##############################################
-import urllib.request
+
 
 STARmodel_url = 'https://github.com/Rocco698/NUCE_431W/blob/main/OpenMC_STAR_Model/CAD_TO_OPENMC/STAR5_Whole.h5m' # 1.2 MB (Should find the file: STAR5_Whole.h5m)
 def download(url):
@@ -30,6 +32,7 @@ def download(url):
     with open("dagmc.h5m", 'wb') as f:
         f.write(u.read())
 
+excel_path="HOME/STAR40_Neutonics_Data.xlsx"
 # ##############################################
 #       MATERIALS
 # ##############################################
@@ -138,7 +141,9 @@ def fusion_ring_source(
     source.angle = openmc.stats.Isotropic()
     return [source]
 
-
+# Create data frame from excel sheet #
+df = pd.read_excel(excel_path)
+df=pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list("ABCD"))
 
 # #################################################
 #       TALLIES

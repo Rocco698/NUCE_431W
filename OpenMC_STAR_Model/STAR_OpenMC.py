@@ -99,8 +99,9 @@ print(mat_list)
 # Needs proper values still (8 Feb)
 def fusion_ring_source(
     radius: float,
+    z_placement: float,
+    activity: float,
     angles: Tuple[float, float] = (0, 2 * np.pi),
-    z_placement: float = 0,
     fuel: Dict = {"D": 0.5, "T": 0.5}):
     """Creates a list of openmc.IndependentSource objects in a ring shape.
 
@@ -139,12 +140,20 @@ def fusion_ring_source(
         origin=(0.0, 0.0, 0.0) )
     source.energy =openmc.stats.Discrete([14.0e6], [1.0]) # (14 MeV neutrons, 100% distribution)
     source.angle = openmc.stats.Isotropic()
+    source.strength = activity
     return [source]
 
 # Create data frame from excel sheet #
 df = pd.read_excel(excel_path)
-df=pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list("ABCD"))
+radi_s = df.loc[:,"R [m]"].tolist()
+z_pos = df.loc[:,"Z[m]"].tolist()
+activ_s = df.loc[:,r"[neutron/s]"].tolist()
 
+iter=0
+sources = []
+while iter <= 501:
+    sources= sources.append(fusion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=activ_s[iter]))
+    iter += 1
 # #################################################
 #       TALLIES
 # #################################################
@@ -159,7 +168,7 @@ settings.dagmc = True
 settings.batches = 10
 settings.inactive = 2
 settings.particles = 5000
-settings.source = fusion_ring_source(...) #Need to do for loop
+settings.source = [sources]   
 settings.export_to_xml()
 
 print(settings)

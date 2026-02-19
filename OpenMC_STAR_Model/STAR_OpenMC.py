@@ -149,7 +149,7 @@ activ_s = df.loc[:,r"[neutron/s]"].tolist()
 iter=0
 sources = []
 while iter <= 501:
-    sources= sources.append(fusion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=activ_s[iter]))
+    sources.append(fusion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=activ_s[iter]))
     iter += 1
 # #################################################
 #       TALLIES

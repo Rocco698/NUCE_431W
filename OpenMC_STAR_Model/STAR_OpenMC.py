@@ -97,10 +97,7 @@ print(mat_list)
 # #################################################
 # Heavy use of code from: https://github.com/fusion-energy/openmc-plasma-source/blob/main/examples/tokamak_source_example.py
 # Needs proper values still (8 Feb)
-def fusion_ring_source(
-    radius: float,
-    z_placement: float,
-    activity: float,
+def fusion_ring_source(radius: float, z_placement: float, activity: float,
     angles: Tuple[float, float] = (0, 2 * np.pi),
     fuel: Dict = {"D": 0.5, "T": 0.5}):
     """Creates a list of openmc.IndependentSource objects in a ring shape.

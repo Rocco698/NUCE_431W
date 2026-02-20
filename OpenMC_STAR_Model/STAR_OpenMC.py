@@ -144,12 +144,12 @@ def fusion_ring_source(radius: float, z_placement: float, activity: float,
 df = pd.read_excel(excel_path)
 radi_s = df.loc[:,"R [m]"].tolist()
 z_pos = df.loc[:,"Z[m]"].tolist()
-activ_s = df.loc[:,r"[neutron/s]"].tolist()
+norm_activ = df.loc[:,"norm"].tolist()
 
 iter=0
 sources = []
 while iter <= 501:
-    sources.append(fusion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=activ_s[iter]))
+    sources.append(fusion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=norm__activ[iter]))
     iter += 1
 # #################################################
 #       TALLIES

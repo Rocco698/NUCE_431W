@@ -36,7 +36,13 @@ Breeder_material = openmc.Material(name='Breeder-PbLi')
 Coolant_material = openmc.Material(name='Coolant-He (8MPA)')
 
 #Steel-EUROFER97
-Steel_material.mix_materials([Fe,C,Cr,W,Mn,Ta,N2],[0.8924,0.0011,0.09,0.011,0.004,0.0012,0.0003],'wo')
+Steel_material.add_element('Fe', 0.8924, 'wo')
+Steel_material.add_element('C', 0.0011, 'wo')
+Steel_material.add_element('Cr', 0.09, 'wo')
+Steel_material.add_element('W', 0.011, 'wo')
+Steel_material.add_element('Mn', 0.004, 'wo')
+Steel_material.add_element('Ta', 0.0012, 'wo')
+Steel_material.add_element('N2', 0.0003, 'wo')
 #Shielding-B4C
 Shielding_material.add_element('B',4.0,'ao')
 Shielding_material.add_element('C',1.0,'ao')

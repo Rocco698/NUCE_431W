@@ -19,6 +19,7 @@ import urllib.request
 
 
 STARmodel_url = 'https://github.com/Rocco698/NUCE_431W/blob/main/OpenMC_STAR_Model/CAD_TO_OPENMC/STAR5_Whole.h5m' # 1.2 MB (Should find the file: STAR5_Whole.h5m)
+excel_path="HOME/STAR40_Neutonics_Data.xlsx" # NEED TO CHANGE AND SHIT
 def download(url):
     """
     Helper function for retrieving dagmc models
@@ -32,7 +33,7 @@ def download(url):
     with open("dagmc.h5m", 'wb') as f:
         f.write(u.read())
 
-excel_path="HOME/STAR40_Neutonics_Data.xlsx"
+
 # ##############################################
 #       MATERIALS
 # ##############################################
@@ -102,7 +103,6 @@ print(mat_list)
 #       SOURCE DEFINITION
 # #################################################
 # Heavy use of code from: https://github.com/fusion-energy/openmc-plasma-source/blob/main/examples/tokamak_source_example.py
-# Needs proper values still (8 Feb)
 def fusion_ring_source(radius: float, z_placement: float, activity: float,
     angles: Tuple[float, float] = (0, 2 * np.pi),
     fuel: Dict = {"D": 0.5, "T": 0.5}):

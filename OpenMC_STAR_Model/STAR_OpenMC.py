@@ -145,7 +145,7 @@ def onion_ring_source(radius: float, z_placement: float, activity: float, #these
     source.energy =openmc.stats.Discrete([14.0e6], [1.0]) # (14 MeV neutrons, 100% distribution)
     source.angle = openmc.stats.Isotropic()
     source.strength = activity
-    return [source]
+    return source
 
 # Create data frame from excel sheet #
 df = pd.read_excel(excel_path)
@@ -153,13 +153,13 @@ radi_s = df.loc[:,"R [m]"].tolist()
 z_pos = df.loc[:,"Z[m]"].tolist()
 norm_activ = df.loc[:,"norm"].tolist()
 
-sources = onion_ring_source(radius= radi_s[1], z_placement= z_pos[1], activity= norm_activ[1])
+#sources = onion_ring_source(radius= radi_s[0], z_placement= z_pos[0], activity= norm_activ[0])
 
-#iter=0
-#sources = []
-#while iter <= 501:
-#    sources.append(fusion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=norm_activ[iter]))
-#    iter += 1
+iter=0
+sources = []
+while iter <= 501:
+    sources.append(onion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=norm_activ[iter]))
+    iter += 1
 print('> Sources array:', sources)
 # #################################################
 #       TALLIES

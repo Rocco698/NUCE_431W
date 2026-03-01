@@ -85,7 +85,7 @@ mat_list= openmc.Materials([Steel_material, Shielding_material, Breeder_material
 mat_list.export_to_xml()
 
 mat_list.cross_sections = "/storage/work/irj5023/NUCE403/endfb-viii.0-hdf5/cross_sections.xml"
-print('materials export success')
+print('> Materials Export Success')
 
 
 # ################################################
@@ -96,16 +96,17 @@ download(STARmodel_url)
 dag_univ = openmc.DAGMCUniverse('dagmc.h5m')
 geometry = openmc.Geometry(dag_univ)
 geometry.export_to_xml()
-print(geometry) #Look into plotting later
-print(mat_list)
+#print(geometry) #Look into plotting later
+#print(mat_list)
+print('> Geometry Export Success')
 
 # #################################################
 #       SOURCE DEFINITION
 # #################################################
-# Heavy use of code from: https://github.com/fusion-energy/openmc-plasma-source/blob/main/examples/tokamak_source_example.py
-def fusion_ring_source(radius: float, z_placement: float, activity: float,
-    angles: Tuple[float, float] = (0, 2 * np.pi),
-    fuel: Dict = {"D": 0.5, "T": 0.5}):
+# Heavy use of code from: https://github.com/fusion-energy/openmc-plasma-source/blob/main/examples/ring_source_example.py
+def onion_ring_source(radius: float, z_placement: float, activity: float, #these are the only inputs you should need to change
+                      angles: Tuple[float, float] = (0, 2 * np.pi),       #not these
+                      fuel: Dict = {"D": 0.5, "T": 0.5}):                 #not these
     """Creates a list of openmc.IndependentSource objects in a ring shape.
 
     Useful for simulations where all the plasma parameters are not known and
@@ -114,7 +115,7 @@ def fusion_ring_source(radius: float, z_placement: float, activity: float,
     Args:
         radius: the inner radius of the ring source, in metres
         angles: the start and stop angles of the ring in radians
-        z_placement: Location of the ring source (m). Defaults to 0.
+       z_placement: Location of the ring source (m). Defaults to 0.
         temperature: Temperature of the source (eV). #Unused#
         fuel: Isotopes as keys and atom fractions as values
     Returns:
@@ -152,11 +153,14 @@ radi_s = df.loc[:,"R [m]"].tolist()
 z_pos = df.loc[:,"Z[m]"].tolist()
 norm_activ = df.loc[:,"norm"].tolist()
 
-iter=0
-sources = []
-while iter <= 501:
-    sources.append(fusion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=norm__activ[iter]))
-    iter += 1
+sources = onion_ring_source(radius= radi_s[1], z_placement= z_pos[1], activity= norm_activ[1])
+
+#iter=0
+#sources = []
+#while iter <= 501:
+#    sources.append(fusion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=norm_activ[iter]))
+#    iter += 1
+print('> Sources array:', sources)
 # #################################################
 #       TALLIES
 # #################################################

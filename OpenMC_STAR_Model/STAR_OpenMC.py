@@ -19,7 +19,7 @@ import urllib.request
 
 
 STARmodel_url = 'https://github.com/Rocco698/NUCE_431W/blob/main/OpenMC_STAR_Model/CAD_TO_OPENMC/STAR5_Whole.h5m' # 1.2 MB (Should find the file: STAR5_Whole.h5m)
-excel_path="HOME/STAR40_Neutonics_Data.xlsx" # NEED TO CHANGE AND SHIT
+excel_path="/storage/work/irj5023/Capstone/STAR40_Neutonics_Data.xlsx" # NEED TO CHANGE AND SHIT
 def download(url):
     """
     Helper function for retrieving dagmc models

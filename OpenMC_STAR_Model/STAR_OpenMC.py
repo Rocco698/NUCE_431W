@@ -175,7 +175,7 @@ settings.dagmc = True
 settings.batches = 10
 settings.inactive = 2
 settings.particles = 5000
-settings.source = [sources]   
+settings.source = sources   
 settings.export_to_xml()
 
 print(settings)

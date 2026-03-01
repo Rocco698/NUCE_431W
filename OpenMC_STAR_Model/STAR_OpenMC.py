@@ -11,7 +11,7 @@ import pandas as pd # For Excel
 import os # For Excel
 import matplotlib.pyplot as plt # plotting tools
 from IPython.display import Image
-from openmc_plasma_source import tokamak_source # Ring source, make sure to download: pip install openmc_plasma_source
+#from openmc_plasma_source import tokamak_source # Ring source, make sure to download: pip install openmc_plasma_source
 import urllib.request
 # ##############################################
 # IMPORT THE FILE FUNCTION

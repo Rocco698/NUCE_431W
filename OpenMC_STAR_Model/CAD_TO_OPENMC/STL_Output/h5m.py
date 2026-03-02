@@ -1,6 +1,6 @@
 # cSpell: Disable
 
-# NOTICE: This file will not work unless you move all of the .stl files to the CAD_TO_OPENMC directory! They were only moved to a dedicated folder for cosmetic purposes. If you plan on running this code, move all 74 .stls to CAD_TO_OPENMC first. When finished, put them back!
+# NOTICE: Run this script in the same directory as the .stl files. 
 from stl_to_h5m import stl_to_h5m
 
 stl_to_h5m(
@@ -86,7 +86,7 @@ stl_to_h5m(
         ('PassivePlateTop.stl', 'Steel_material'),
 
 
-        ('Plasma.stl', 'fuel'), #was mat_8 (make uranium material to update here) (made this steel_material for testing. Will change back to proper later - Rocco 02/16)
+        ('Plasma.stl', 'plasma_material'), #was mat_8 (Now plasma_material for specification later)
 
 
         ('Shield97Steel3IBOuter.stl', 'Shielding_material'), #was mat_9

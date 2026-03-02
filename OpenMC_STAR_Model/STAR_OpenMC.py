@@ -11,7 +11,7 @@ import pandas as pd # For Excel
 import os # For Excel
 import matplotlib.pyplot as plt # plotting tools
 from IPython.display import Image
-from openmc_plasma_source import tokamak_source # Ring source, make sure to download: pip install openmc_plasma_source
+#from openmc_plasma_source import tokamak_source # Ring source, make sure to download: pip install openmc_plasma_source
 import urllib.request
 # ##############################################
 # IMPORT THE FILE FUNCTION
@@ -19,7 +19,7 @@ import urllib.request
 
 
 STARmodel_url = 'https://github.com/Rocco698/NUCE_431W/blob/main/OpenMC_STAR_Model/CAD_TO_OPENMC/STAR5_Whole.h5m' # 1.2 MB (Should find the file: STAR5_Whole.h5m)
-excel_path="HOME/STAR40_Neutonics_Data.xlsx" # NEED TO CHANGE AND SHIT
+excel_path="/storage/work/irj5023/Capstone/STAR40_Neutonics_Data.xlsx" # NEED TO CHANGE AND SHIT
 def download(url):
     """
     Helper function for retrieving dagmc models
@@ -50,7 +50,7 @@ Steel_material.add_element('Cr', 0.09, 'wo')
 Steel_material.add_element('W', 0.011, 'wo')
 Steel_material.add_element('Mn', 0.004, 'wo')
 Steel_material.add_element('Ta', 0.0012, 'wo')
-Steel_material.add_element('N2', 0.0003, 'wo')
+Steel_material.add_element('N', 0.0003, 'wo')
 #Shielding-B4C
 Shielding_material.add_element('B',4.0,'ao')
 Shielding_material.add_element('C',1.0,'ao')
@@ -78,14 +78,14 @@ Breeder_material.add_element('Si',1.0,'ao')
 Breeder_material.add_element('O',4.0,'ao')
 Breeder_material.set_density('g/cm3',2.35)
 #Coolant-He (8MPA)
-Coolant_material.add_element('He2',1.0,'ao')
+Coolant_material.add_element('He',1.0,'ao')
 Coolant_material.set_density('kg/m3',5.0)
 
 mat_list= openmc.Materials([Steel_material, Shielding_material, Breeder_material, Coolant_material])
 mat_list.export_to_xml()
 
 mat_list.cross_sections = "/storage/work/irj5023/NUCE403/endfb-viii.0-hdf5/cross_sections.xml"
-print('materials export success')
+print('> Materials Export Success')
 
 
 # ################################################
@@ -96,16 +96,17 @@ download(STARmodel_url)
 dag_univ = openmc.DAGMCUniverse('dagmc.h5m')
 geometry = openmc.Geometry(dag_univ)
 geometry.export_to_xml()
-print(geometry) #Look into plotting later
-print(mat_list)
+#print(geometry) #Look into plotting later
+#print(mat_list)
+print('> Geometry Export Success')
 
 # #################################################
 #       SOURCE DEFINITION
 # #################################################
-# Heavy use of code from: https://github.com/fusion-energy/openmc-plasma-source/blob/main/examples/tokamak_source_example.py
-def fusion_ring_source(radius: float, z_placement: float, activity: float,
-    angles: Tuple[float, float] = (0, 2 * np.pi),
-    fuel: Dict = {"D": 0.5, "T": 0.5}):
+# Heavy use of code from: https://github.com/fusion-energy/openmc-plasma-source/blob/main/examples/ring_source_example.py
+def onion_ring_source(radius: float, z_placement: float, activity: float, #these are the only inputs you should need to change
+                      angles: Tuple[float, float] = (0, 2 * np.pi),       #not these
+                      fuel: Dict = {"D": 0.5, "T": 0.5}):                 #not these
     """Creates a list of openmc.IndependentSource objects in a ring shape.
 
     Useful for simulations where all the plasma parameters are not known and
@@ -114,7 +115,7 @@ def fusion_ring_source(radius: float, z_placement: float, activity: float,
     Args:
         radius: the inner radius of the ring source, in metres
         angles: the start and stop angles of the ring in radians
-        z_placement: Location of the ring source (m). Defaults to 0.
+       z_placement: Location of the ring source (m). Defaults to 0.
         temperature: Temperature of the source (eV). #Unused#
         fuel: Isotopes as keys and atom fractions as values
     Returns:
@@ -144,7 +145,7 @@ def fusion_ring_source(radius: float, z_placement: float, activity: float,
     source.energy =openmc.stats.Discrete([14.0e6], [1.0]) # (14 MeV neutrons, 100% distribution)
     source.angle = openmc.stats.Isotropic()
     source.strength = activity
-    return [source]
+    return source
 
 # Create data frame from excel sheet #
 df = pd.read_excel(excel_path)
@@ -152,11 +153,14 @@ radi_s = df.loc[:,"R [m]"].tolist()
 z_pos = df.loc[:,"Z[m]"].tolist()
 norm_activ = df.loc[:,"norm"].tolist()
 
+#sources = onion_ring_source(radius= radi_s[0], z_placement= z_pos[0], activity= norm_activ[0])
+
 iter=0
 sources = []
 while iter <= 501:
-    sources.append(fusion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=norm__activ[iter]))
+    sources.append(onion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=norm_activ[iter]))
     iter += 1
+print('> Sources array:', sources)
 # #################################################
 #       TALLIES
 # #################################################
@@ -171,7 +175,7 @@ settings.dagmc = True
 settings.batches = 10
 settings.inactive = 2
 settings.particles = 5000
-settings.source = [sources]   
+settings.source = sources   
 settings.export_to_xml()
 
 print(settings)

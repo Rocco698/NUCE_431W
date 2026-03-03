@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<plots>
+  <plot id="1" filename="TestImg" color_by="material" type="slice" basis="yz">
+    <pixels>900 900</pixels>
+    <origin>0.0 0.0 0.0</origin>
+    <width>15000 15000</width>
+    <color id="1" rgb="0 0 0"/>
+    <color id="2" rgb="255 20 147"/>
+    <color id="3" rgb="0 0 255"/>
+    <color id="5" rgb="255 0 0"/>
+  </plot>
+</plots>

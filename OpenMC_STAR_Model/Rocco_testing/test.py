@@ -142,25 +142,16 @@ print(settings)
 # ################################
 #  Plots Definition
 # ################################
-p = openmc.Plot()
-p.basis = 'xz'
-p.origin = (0.0, 0.0, 0.0)
-p.width = (30.0, 20.0)
-p.pixels = (450, 300)
-p.color_by = 'material'
-p.filemame = 'testingImage'
-plots = openmc.Plots([p])
-plots.export_to_xml()
-openmc.plot_geometry()
 
-#ww = 15
-#plot1 = openmc.Plot()
-#plot1.width = (ww,ww)
-#plot1.basis = 'xy'
-#plot1.color_by = 'material'
-#plot1.filename = 'RadialView'
-#plots = openmc.Plots([plot1])
-#plots.export_to_xml()
+ww = 15000
+plot1 = openmc.Plot()
+plot1.width = (ww,ww)
+plot1.basis = 'yz'
+plot1.color_by = 'material'
+plot1.filename = 'TestImg'
+plot1.pixels = (900,900)
+plots = openmc.Plots([plot1])
+plots.export_to_xml()
 
 # Set the environment variable for cross sections
 os.environ["OPENMC_CROSS_SECTIONS"] = "/Users/rocco698/Desktop/JENDL5/jendl-5-hdf5/cross_sections.xml"

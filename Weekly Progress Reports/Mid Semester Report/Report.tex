@@ -33,22 +33,16 @@ Issac James\inst{1}}
 % If there are more than two authors, 'et al.' is used.
 %
 \institute{Pennsylvania State University\\
-\email{3/Mar/2026}\\
+\email{14/Mar/2026}\\
 }
 %
-\maketitle              % typeset the header of the contribution
+\maketitle     % typeset the header of the contribution
 %
-\begin{abstract}
+\begin{abstract} 
 With the intention for the spherical tokamak advanced reactor (STAR) to generate energy; It uses a D-T reaction to generate high-energy neutrons. 
-These D-T reactions have a major advantage over other fusion reactions in the fact that they have highest cross section of occurrence, compared to other popular fusion reactions, as well as the highest power density, at $\SI{34}{\watt\per\meter\cubed\kilo\pascal\squared}$
-\cite{Khodak2025}. 
-However, there are multiple issues associated with the use of tritium in this reaction. The first is that tritium has a relatively short half-life of 2 years,
-which makes it difficult to accumulate and store for this reaction. Second, the energy emitted in this reaction is mostly transferred to the emitted neutron,
-leading to extremely high energy neutrons, 14 MeV. To resolve these issues, lithium-6 is used with a neutron source to produce both tritium and a small
-number of neutrons. This occurs within the blanket, which contains the lithium-6 to breed tritium. Once the D-T reaction occurs, the kinetic energy of the 14
-MeV neutrons must be converted to a more useful energy form. The current moderator of choice, within the blanket, is lead.
-The primary focus of our work is optimizing the blanket's configuration to promote tritium production for this D-T reaction. The secondary focus is the
-optimization of the neutron shield to protect other components and personnel.
+These D-T reactions have a major advantage over other fusion reactions in that they have highest cross section of occurrence, compared to other popular fusion reactions, as well as the highest power density, at 34 $\frac{W}{m^3kPa^2}$
+\cite{khodak2025}. 
+However, there are multiple issues associated with the use of tritium in this reaction. The first is that tritium has a relatively short half-life of 2 years, which makes it difficult to accumulate and store for this reaction. Second, the energy emitted in this reaction is mostly transferred to the emitted neutron, leading to extremely high energy neutrons, 14 MeV. To resolve these issues, lithium-6 is used with a neutron source to produce both tritium and a small number of neutrons. This occurs within the blanket, which contains the lithium-6 to breed tritium. Once the D-T reaction occurs, the kinetic energy of the 14 MeV neutrons must be converted to a more useful energy form. The current moderator of choice, within the blanket, is lead. The primary focus of our work is optimizing the blanket's configuration to promote tritium production for this D-T reaction. The secondary focus is the optimization of the neutron shield to protect other components and personnel.
 
 
 \keywords{Tritium  \and Fusion \and Neutronics.}
@@ -56,58 +50,34 @@ optimization of the neutron shield to protect other components and personnel.
 %
 %
 %
-\section{Intoduction}
+\section{Introduction}
 \subsection{Background}
-The main issue with this choice of reaction is that tritium is expensive and difficult to produce and store. However, tritium can be made by the interaction of neutrons and lithium. Since the STAR utilizes a D-T reaction to produce fast 14 MeV neutrons, with an initial injection of tritium into the plasma, the neutrons emitted by the plasma can be used to breed more tritium. Therefore a the design of a breeding blanket is important if one wants to have as much tritium as possible for the D-T reaction. 
+\hspace{0.5cm} 
+The main issue with this choice of reaction is that tritium is expensive and difficult to produce and store. However, tritium can be made by the interaction of neutrons and lithium. Since the STAR utilizes a D-T reaction to produce fast 14 MeV neutrons, with an initial injection of tritium into the plasma, the neutrons emitted by the plasma can be used to breed more tritium. Therefore, a the design of a breeding blanket is important if one wants to have as much tritium as possible for the D-T reaction. 
 
-Yet there still exists the problem of maximizing neutron-lithium interactions. Since these neutrons from the plasma are high energy, the cross section of the interaction is relatively low. To raise the cross section, the neutrons need to be moderated to a lower energy. That is why lead was chosen to be mixed in with the lithium.
+Yet, there still exists the problem of maximizing neutron-lithium interactions. Since these neutrons from the plasma are high energy, the cross section of the interaction is relatively low. To raise the cross section, the neutrons need to be moderated to a lower energy. That is why lead was chosen to be mixed in with lithium.
 
 Over time, the lithium in the breeding blanket will decline and need to be replaced. To do this with as little maintenance as possible, the lithium and lead within the blanket will be in a liquid state, which allows for easy control of the amount of lithium present at any point in time.
 \subsection{Objectives}
-This is all previous work already done by the experts at Princeton Physics Plasma Lab. Our task is to both maximize the amount of tritium created within the breeding region and develop a shield to prevent these high energy neutrons from leaving the reactor in large amounts. To do this, we have two design aspects we can change. First, the geometry of the breeding region and shield can be changed quite a bit, due to extra space around the plasma chamber. The other aspect is the material composition for both the breeding region and shield. 
+\hspace{0.5cm} 
+Our task is to both maximize the amount of tritium created within the breeding region and develop a shield to prevent high energy neutrons from leaving the reactor in large amounts. To do this, we have two design aspects we can change. First, the material composition for both the breeding region and the shield. The other aspect is the geometry of the breeding region and shield, which due to the extra space around the plasma chamber can be modified.
 
-\begin{table}
-\caption{Table captions should be placed above the
-tables.}\label{tab1}
-\begin{tabular}{|l|l|l|}
-\hline
-Heading level &  Example & Font size and style\\
-\hline
-Title (centered) &  {\Large\bfseries Lecture Notes} & 14 point, bold\\
-1st-level heading &  {\large\bfseries 1 Introduction} & 12 point, bold\\
-2nd-level heading & {\bfseries 2.1 Printing Area} & 10 point, bold\\
-3rd-level heading & {\bfseries Run-in Heading in Bold.} Text follows & 10 point, bold\\
-4th-level heading & {\itshape Lowest Level Heading.} Text follows & 10 point, italic\\
-\hline
-\end{tabular}
-\end{table}
-
-
-\noindent Displayed equations are centered and set on a separate
-line.
-\begin{equation}
-x + y = z
-\end{equation}
-Please try to avoid rasterized images for line-art diagrams and
-schemas. Whenever possible, use vector graphics instead (see
-Fig.~\ref{fig1}).
-
-\begin{figure}
-\includegraphics[width=\textwidth]{fig1.eps}
-\caption{A figure caption is always placed below the illustration.
-Please note that short captions are centered, while long ones are
-justified by the macro package automatically.} \label{fig1}
-\end{figure}
+The primary objective of this work is to optimize the design of the breeding blanket,therefore our work will focus on increasing the tritium breeding ratio (TBR) within the breeder. The TBR denotes the Tritium produced for each daughter neutron from fusion. This gives us a scale of measure for how efficient our breeder is. Due to interaction rates and probabilities being inherently material and energy characteristics, our work will mainly focus on TBR testing of different materials.
 
 \section{Project Scope Evolution}
-Describe the data gathering and process to define the project scope, describing how it evolved from the initial sponsor specification to the selected scope.
+\hspace{0.5cm} 
+Our project scope has remained relatively unchanged since the project has begun. This is due to the clear objectives, limitations, and tools given to us by our sponsor Princeton Plasma Physics Laboratory (PPPL). We are working directly on increasing the TBR, with given materials and neutron source data. Towards the end of the project, as we begin analyzing neutron shielding, our scope may change as we focus more on geometrical changes to the design.  
 
 \section{Gantt Chart and Division of Work}
-Document the process of activity identification given the selected scope, and give insights on how time was allocated for each activity, as well as the rationale for sequencing them. Show the initial Gantt Chart.
-\begin{equation}
-Gantt + Chart = Here.exe
-\end{equation}
-The Processes shown in the Gantt Chart were ordered and chosen due to the necessary order of completion of certain tasks, such as the completion of the CAD to DAGMC mesh before being able to import the CAD model to OpenMC. However, the creation of the ring sources happened to be done after the CAD model was successfully imported, based on chance, and when the group member(s) were free to write the code.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{Gantt_Chart.png}
+    \caption{Gantt Chart}
+    \label{fig:placeholder}
+\end{figure}
+
+The processes shown in the Gantt Chart were ordered and chosen due to the necessary order of completion of certain tasks, such as the completion of the CAD to DAGMC mesh before being able to import the CAD model to OpenMC. However, the creation of the ring sources happened to be done after the CAD model was successfully imported, based on chance, and when the group member(s) were free to write the code.
 \begin{table}
 \centering
 \caption{Division of Work.}\label{tab1}
@@ -120,11 +90,11 @@ Sean Dailey &  Cubit license acquisition\\
   &  CAD model editing tasks\\
 
 \hline
-  &  DAGMC design\\
-Vassil Ivakimov &  OpenMC design\\
-  &  Assorted CAD tasks\\
+  &  DAGMC debugging\\
+Vasil Ivakimov &  OpenMC design\\
+  &  Depletion Design\\
 \hline
- &  OpenMC source development\\
+ &  Source development\\
 Issac James &  OpenMC Debugging\\
  &  Assorted CAD tasks\\
 \hline
@@ -137,28 +107,29 @@ Rocco Lombardo & DAGMC design\\
 
 
 \section{Current Progress}
-Narrative of the progress on each of the activities included in the WBS. Show if there are positive (ahead of schedule) or negative (behind schedule) deviations on the activities, and discuss the origin of such deviations.
+\hspace{0.5cm} 
+
+We have fully completed the initial objective of importing the cad file for OpenMC and neutronics code for OpenMC. We completed the model and OpenMC code ahead of scheduled, while the cad import took over a month and was our only major negative. This was due to the complexity in having to rebuild OpenMC with specific dependencies on different computers as each group member had different systems. Another major issue with this step was the internal file conversion, having to process the cad file to a DAGMC mesh required our own scripts and eventually access to proprietary software. Our current step is on the debugging and testing of the OpenMC model, which we expect to be our final work heavy step. After testing all material types, we will compile our results, select an optimum material, and run long term depletion cases for a realistic analysis of Tritium production. We believe that we are overall ahead of schedule and that we will finish this project on schedule. \cite{group}
 
 \section{Further Plans}
-Discuss any changes to the scope/WBS/timeline that will enable satisfactory completion.
 
-Going forward, the largest change in the group's WBS will be the addition of anything Cubit or CAD, which will be handled by Sean Dailey. 
+Going forward, the largest change in the group's work breakdown structure (WBS) will be the addition of anything Cubit or CAD, which will be handled by Sean Dailey. 
 The timeline of our Gantt chart has changed ever so slightly, as the model was finished as February ended and the first sims were run in the first few days of March. 
-After the mid-semester break, we will be running sims with the goal of validating our model as soon as the particle leakage issue is fixed.
+
+After the mid-semester break, we will be running simulations with the goal of validating our model as soon as the particle leakage issue is fixed.
 The scope of the project has the possibility of expanding on the condition that the data produced by the sims is good. If the project is to expand, it may be expanded to further optimization of the TBR via machine learning or optimization algorithms, and additionally to possible publication.
-If publication of this project were to occur, the publication work would almost certainly continue after the end of the semester and the graduation of the group members. The decision to continue this project beyond the bounds of the Nuce 431W will be made after enough simulations are run and data has been processed later in March or early mid-April.
+
+If publication of this project were to occur, the publication work would almost certainly continue after the end of the semester and graduation of the group members. The decision to continue this project beyond the bounds of the Nuce 431W will be made after enough simulations are run and data has been processed later in March or early mid-April.
+
 
 %
 % the environments 'definition', 'lemma', 'proposition', 'corollary',
 % 'remark', and 'example' are defined in the LLNCS documentclass as well.
 %
 
-For citations of references, use:
-In \cite{einstein} Einstein....
 
-In \cite{knuthwebsite} the authors
 
-This \cite{latexcompanion} is Latex. 
+
 %
 % ---- Bibliography ----
 %
@@ -167,5 +138,6 @@ This \cite{latexcompanion} is Latex.
 %
 \bibliographystyle{refs-style}
 \bibliography{refs}
+
 %
 \end{document}

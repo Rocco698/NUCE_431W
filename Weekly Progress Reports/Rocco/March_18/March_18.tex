@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+%\usepackage{graphicx}
+%\usepackage{caption}
+%\usepackage{cancel}
+%\usepackage{amsmath}
+%\usepackage{mathrsfs}
+\usepackage{ulem}
+%\usepackage[version=4]{mhchem}
+\usepackage{comment}
+%\usepackage{float}
+\usepackage{enumitem}
+\usepackage{soul}
+\usepackage{float}
+%\usepackage{siunitx}
+\usepackage{tabularx}
+%\usepackage{bm}
+\usepackage{multicol}
+%\usepackage{mathtools}
+\usepackage{fontspec}
+\usepackage{censor}
+%\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+%\usepgfplotslibrary{statistics}
+%\pgfplotsset{compat=1.18}
+\setmainfont{Arial}
+
+%cSpell:ignore Khodak NUCE Neutronics OPENMC Blackhole Lombardo
+
+\begin{document}
+
+{\centering \section*{NUCE 431W: Neutronics of a Fusion Plant}
+
+\subsection*{Weekly Progress Report}
+
+\subsubsection*{03/11/2026 - 03/18/2026}}
+
+
+\hrulefill
+
+\bigskip
+
+\textbf{Project Manager(s):} Dr. Andrei Khodak,  \censor{akhodak@pppl.gov}
+
+\bigskip
+
+\textbf{Submitter:} Rocco Lombardo, ral5748@psu.edu
+
+\bigskip
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{0.95\textwidth} { 
+        | >{\centering\arraybackslash}X 
+        | >{\centering\arraybackslash}X 
+        | >{\centering\arraybackslash}X
+        | >{\centering\arraybackslash}X | }
+
+    \hline
+    \textbf{Milestones} & \textbf{Planned Date} & \textbf{Actual Date} & \textbf{Comments} \\
+    \hline
+    Spring Break and Personal commitments have led me to be absent for this week and last week. So far, we have imported the model. Albeit still broken, it can 'run.'  & 03/13/2026 & 03/18/2026 & pyDAGMC was used to write to .h5m file. Cubit will be used for further configuring.  \\
+    \hline
+    - & - & - & - \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\bigskip
+
+\textbf{Accomplished This Week: }
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{0.95\textwidth} { 
+        | >{\centering\arraybackslash}X
+        | >{\centering\arraybackslash}X | }
+
+    \hline
+    \textbf{General Description} & \textbf{Comments} \\
+    \hline
+    General Debugging  & Debugged source, simulation settings, and material definitions. One successful simulation ran. \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\textbf{Planned for Next Week: }
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{0.95\textwidth} { 
+        | >{\centering\arraybackslash}X
+        | >{\centering\arraybackslash}X | }
+
+    \hline
+    \textbf{General Description} & \textbf{Comments} \\
+    \hline
+    Refine non-cubit workflow. & Refine and polish code for meshing and setting material definitions without the use of cubit. \\
+    \hline
+    Refine model in cubit and make sure the model works.
+    \end{tabularx}
+\end{table}
+
+
+\end{document}

@@ -18,7 +18,7 @@ import urllib.request
 # ##############################################
 
 
-STARmodel_url = 'https://github.com/Rocco698/NUCE_431W/blob/main/OpenMC_STAR_Model/STARforCapstoneH5M.h5m' # 1.2 MB (Should find the file: .h5m star file)
+STARmodel_url = 'https://raw.githubusercontent.com/Rocco698/NUCE_431W/blob/main/OpenMC_STAR_Model/STARforCapstoneH5M.h5m' # 1.2 MB (Should find the file: .h5m star file)
 excel_path="/storage/work/irj5023/Capstone/STAR40_Neutonics_Data.xlsx" # NEED TO CHANGE AND SHIT
 def download(url):
     """

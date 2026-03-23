@@ -160,7 +160,7 @@ sources = []
 while iter <= 501:
     sources.append(onion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=norm_activ[iter]))
     iter += 1
-print('> Sources array:', sources)
+print('> Sources Success')
 # #################################################
 #       TALLIES
 # #################################################
@@ -183,13 +183,20 @@ print(settings)
 # ################################
 #  Plots Definition
 # ################################
+material_colors = {
+    Shielding_material: 'black',
+    Breeder_material: 'red',
+    Steel_material: 'grey',
+    Coolant_material: 'blue'
+}
+
 p = openmc.Plot()
 p.basis = 'xz'
 p.origin = (0.0, 0.0, 0.0)
 p.width = (30.0, 20.0)
 p.pixels = (450, 300)
+p.colors = material_colors
 p.color_by = 'material'
-p.colors = {shield: 'gray', breed: 'blue'}
 plots = openmc.Plots([p])
 plots.export_to_xml()
 openmc.plot_geometry()

@@ -18,7 +18,7 @@ import urllib.request
 # ##############################################
 
 
-STARmodel_url = 'https://github.com/Rocco698/NUCE_431W/blob/main/OpenMC_STAR_Model/CAD_TO_OPENMC/STAR5_Whole.h5m' # 1.2 MB (Should find the file: STAR5_Whole.h5m)
+STARmodel_url = 'https://github.com/Rocco698/NUCE_431W/raw/refs/heads/main/OpenMC_STAR_Model/STARforCapstoneH5M.h5m' # 1.2 MB (Should find the file: .h5m star file)
 excel_path="/storage/work/irj5023/Capstone/STAR40_Neutonics_Data.xlsx" # NEED TO CHANGE AND SHIT
 def download(url):
     """
@@ -160,7 +160,7 @@ sources = []
 while iter <= 501:
     sources.append(onion_ring_source(radius=radi_s[iter], z_placement=z_pos[iter], activity=norm_activ[iter]))
     iter += 1
-print('> Sources array:', sources)
+print('> Sources Success')
 # #################################################
 #       TALLIES
 # #################################################
@@ -183,13 +183,20 @@ print(settings)
 # ################################
 #  Plots Definition
 # ################################
+material_colors = {
+    Shielding_material: 'black',
+    Breeder_material: 'red',
+    Steel_material: 'grey',
+    Coolant_material: 'blue'
+}
+
 p = openmc.Plot()
 p.basis = 'xz'
 p.origin = (0.0, 0.0, 0.0)
 p.width = (30.0, 20.0)
 p.pixels = (450, 300)
+p.colors = material_colors
 p.color_by = 'material'
-p.colors = {shield: 'gray', breed: 'blue'}
 plots = openmc.Plots([p])
 plots.export_to_xml()
 openmc.plot_geometry()

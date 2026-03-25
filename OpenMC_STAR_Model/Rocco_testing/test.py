@@ -25,6 +25,7 @@ Shielding_material = openmc.Material(name='Shielding_material')
 Breeder_material = openmc.Material(name='Breeder_material')
 Coolant_material = openmc.Material(name='Coolant_material')
 plasma_material = openmc.Material(name = 'Plasma_Material')
+starforcapstone_virgin = openmc.Material(name = 'starforcapstone_virgin')
 
 # plasma_material (void)
 plasma_material.add_element('Ar', 1.0)
@@ -75,7 +76,15 @@ Breeder_material.set_density('g/cm3',2.35)
 Coolant_material.add_element('He',1.0,'ao')
 Coolant_material.set_density('kg/m3',5.0)
 
-mat_list= openmc.Materials([Steel_material, Shielding_material, Breeder_material, Coolant_material, plasma_material])
+starforcapstone_virgin.add_element('Fe', 0.8924, 'wo')
+starforcapstone_virgin.add_element('C', 0.0011, 'wo')
+starforcapstone_virgin.add_element('Cr', 0.09, 'wo')
+starforcapstone_virgin.add_element('W', 0.011, 'wo')
+starforcapstone_virgin.add_element('Mn', 0.004, 'wo')
+starforcapstone_virgin.add_element('Ta', 0.0012, 'wo')
+starforcapstone_virgin.add_element('N', 0.0003, 'wo')
+
+mat_list= openmc.Materials([Steel_material, Shielding_material, Breeder_material, Coolant_material, plasma_material, starforcapstone_virgin])
 mat_list.export_to_xml()
 
 mat_list.cross_sections = "/Users/rocco698/Desktop/JENDL5/jendl-5-hdf5/cross_sections.xml"
@@ -86,7 +95,9 @@ print('materials export success')
 #       GEOMETRY DEFINITION
 # ################################################
 
-dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/CAD_TO_OPENMC/STAR5_Whole.h5m')
+#dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/CAD_TO_OPENMC/STAR5_Whole.h5m')
+
+dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/STARforCapstone_virgin.h5m')
 
 cell_count = dag_univ.n_cells
 
@@ -204,6 +215,7 @@ settings.dagmc = True
 settings.batches = 10
 settings.particles = 5000
 settings.source = sources
+settings.source_rejection_fraction = 0.05
 settings.export_to_xml()
 
 print(settings)
@@ -222,8 +234,9 @@ plot1.colors = {
     Shielding_material: 'deeppink',
     Breeder_material: 'blue',
     plasma_material: 'red',
+    starforcapstone_virgin: "pink",
 }
-plot1.filename = 'TestImg'
+plot1.filename = 'testingthing'
 plot1.pixels = (900,900)
 plots = openmc.Plots([plot1])
 plots.export_to_xml()

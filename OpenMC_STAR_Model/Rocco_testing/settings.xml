@@ -7533,4 +7533,5 @@
       <parameters>14000000.0 1.0</parameters>
     </energy>
   </source>
+  <source_rejection_fraction>0.05</source_rejection_fraction>
 </settings>

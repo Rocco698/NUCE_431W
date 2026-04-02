@@ -42,6 +42,7 @@ Steel_material = openmc.Material(name='Steel-EUROFER97')
 Shielding_material = openmc.Material(name='Shielding-B4C')
 Breeder_material = openmc.Material(name='Breeder-PbLi')
 Coolant_material = openmc.Material(name='Coolant-He (8MPA)')
+STARforCapstone_virgin_mat = openmc.Material(name = 'STARforCapstone_virgin_mat')
 
 #Steel-EUROFER97
 Steel_material.add_element('Fe', 0.8924, 'wo')
@@ -81,7 +82,17 @@ Breeder_material.set_density('g/cm3',2.35)
 Coolant_material.add_element('He',1.0,'ao')
 Coolant_material.set_density('kg/m3',5.0)
 
-mat_list= openmc.Materials([Steel_material, Shielding_material, Breeder_material, Coolant_material])
+
+# NEW MATERIAL
+STARforCapstone_virgin_mat.add_element('Fe', 0.8924, 'wo')
+STARforCapstone_virgin_mat.add_element('C', 0.0011, 'wo')
+STARforCapstone_virgin_mat.add_element('Cr', 0.09, 'wo')
+STARforCapstone_virgin_mat.add_element('W', 0.011, 'wo')
+STARforCapstone_virgin_mat.add_element('Mn', 0.004, 'wo')
+STARforCapstone_virgin_mat.add_element('Ta', 0.0012, 'wo')
+STARforCapstone_virgin_mat.add_element('N', 0.0003, 'wo')
+
+mat_list= openmc.Materials([Steel_material, Shielding_material, Breeder_material, Coolant_material, STARforCapstone_virgin_mat])
 mat_list.export_to_xml()
 
 mat_list.cross_sections = "/storage/work/irj5023/NUCE403/endfb-viii.0-hdf5/cross_sections.xml"

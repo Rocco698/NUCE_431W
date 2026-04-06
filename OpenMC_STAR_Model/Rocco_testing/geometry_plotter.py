@@ -83,7 +83,7 @@ print('materials export success')
 #       GEOMETRY DEFINITION
 # ################################################
 
-dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/CAD_TO_OPENMC/STAR5_Whole.h5m')
+dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/Rocco_testing/StripReactor2_conv.h5m')
 
 sim_univ = dag_univ.bounded_universe(boundary_type = 'reflective', padding_distance = 30.0)
 

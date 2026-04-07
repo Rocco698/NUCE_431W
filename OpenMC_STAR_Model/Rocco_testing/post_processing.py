@@ -17,8 +17,6 @@ from IPython.display import Image                   #> jupyter
 from openmc_plasma_source import fusion_ring_source #> Ring source, make sure to download: pip install openmc_plasma_source
 import urllib.request
 
-from openmc_regular_mesh_plotter import plot_mesh_tally
-
 
 sp = openmc.StatePoint('statepoint.10.h5')
 
@@ -35,10 +33,14 @@ flux = flux_tally.get_slice(scores = ['flux'])
 
 print(flux)
 
+flux.std_dev.shape = (100, 100)
+flux.mean.shape = (100, 100)
 
 
-plt.subplot(121)
+
+plt.plot(121)
 plt.imshow(flux.mean)
+plt.savefig('fluxmap2.png', dpi = 300)
 plt.show()
 
 

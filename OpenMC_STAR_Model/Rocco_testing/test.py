@@ -81,11 +81,11 @@ print('materials export success')
 #       GEOMETRY DEFINITION
 # ################################################
 
-dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/Rocco_testing/output.h5m', auto_geom_ids = True)
+dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/Rocco_testing/Breeder_Outer_Only.h5m', auto_geom_ids = True)
 
 root_cell = openmc.Cell(fill = dag_univ)
 
-root_cell.region = -openmc.Sphere(r = 21000.0, boundary_type = 'vacuum')
+root_cell.region = -openmc.Sphere(r = 17000.0, boundary_type = 'vacuum')
 
 cell_count = dag_univ.n_cells
 
@@ -195,14 +195,18 @@ norm_activ = df.loc[:,"norm"].tolist()
 
 tallies_file = openmc.Tallies()                 #? create a tallies.out file
 
-breeder_mesh = openmc.RegularMesh()
-breeder_mesh.bounding_box = openmc.BoundingBox([-20000.0, -])
 
+breeder_mesh = openmc.RegularMesh()
+breeder_mesh.dimension = [100,100]
+breeder_mesh.lower_left = [-15000.0, -15000.0]
+breeder_mesh.upper_right = [15000.0, 15000.0]
 
 breeder_mesh_filter = openmc.MeshFilter(breeder_mesh)
 
+breeder_universe_filter = openmc.UniverseFilter(dag_univ)
+
 flux_tally = openmc.Tally(name = 'flux')
-flux_tally.filters = [breeder_mesh_filter]
+flux_tally.filters = [breeder_mesh]
 flux_tally.scores = ['flux']
 tallies_file.append(flux_tally)
 
@@ -217,7 +221,7 @@ settings = openmc.Settings()
 settings.run_mode = 'fixed source'
 settings.dagmc = True
 settings.batches = 10
-settings.particles = 100
+settings.particles = 1000
 settings.source = sources
 settings.source_rejection_fraction = 0.05
 settings.export_to_xml()
@@ -248,6 +252,7 @@ os.environ["OPENMC_CROSS_SECTIONS"] = "/Users/rocco698/Desktop/JENDL5/jendl-5-hd
 
 openmc.plot_geometry()
 openmc.run()
+
 
 
 

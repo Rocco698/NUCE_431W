@@ -1,16 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <tallies>
-  <!--1D_mesh-->
-  <mesh id="1" name="1D_mesh">
-    <dimension>1 1 100</dimension>
-    <lower_left>-15000.0 -15000.0 -15000.0</lower_left>
-    <upper_right>-14999.0 15000.0 15000.0</upper_right>
+  <mesh id="1">
+    <dimension>1 1000 1000</dimension>
+    <lower_left>-25.0 -25.0 -25.0</lower_left>
+    <upper_right>25.0 25.0 25.0</upper_right>
   </mesh>
   <filter id="1" type="mesh">
     <bins>1</bins>
   </filter>
   <tally id="1" name="flux">
     <filters>1</filters>
-    <scores>flux</scores>
+    <scores>flux absorption</scores>
   </tally>
 </tallies>

@@ -1,4 +1,11 @@
-# cSpell:disable
+"""
+Code name (purpose): Capstone STAR openmc code
+by Rocco L., Sean D., Vasil I., and Issac J.
+This is an abomination any you know it
+
+import matplotlib.pyplot as plt
+import numpy as np
+"""
 
 # Necessary imports
 import numpy as np # numerical tools
@@ -18,8 +25,9 @@ import urllib.request
 # ##############################################
 
 
-STARmodel_url = 'https://github.com/Rocco698/NUCE_431W/raw/refs/heads/main/OpenMC_STAR_Model/STARforCapstoneH5M.h5m' # 1.2 MB (Should find the file: .h5m star file)
-excel_path="/storage/work/irj5023/Capstone/STAR40_Neutonics_Data.xlsx" # NEED TO CHANGE AND SHIT
+STARmodel_url = 'https://github.com/Rocco698/NUCE_431W/raw/refs/heads/main/OpenMC_STAR_Model/Rocco_testing/output.h5m' # 1.2 MB (Should find the file: .h5m star file) (needs the url from right-clicking the 'raw button on github)
+excel_path="/storage/work/irj5023/Capstone/STAR40_Neutonics_Data.xlsx"
+
 def download(url):
     """
     Helper function for retrieving dagmc models
@@ -33,17 +41,20 @@ def download(url):
     with open("dagmc.h5m", 'wb') as f:
         f.write(u.read())
 
+download(STARmodel_url)
 
 # ##############################################
 #       MATERIALS
 # ##############################################
-#Material Initialization
-Steel_material = openmc.Material(name='Steel-EUROFER97')
-Shielding_material = openmc.Material(name='Shielding-B4C')
-Breeder_material = openmc.Material(name='Breeder-PbLi')
-Coolant_material = openmc.Material(name='Coolant-He (8MPA)')
 
-#Steel-EUROFER97
+#> plasma_material (void)
+plasma_material = openmc.Material(name = 'Plasma_Material')
+plasma_material.add_element('Ar', 1.0)
+plasma_material.set_density('g/cm3', 0.00000000000000001)
+
+
+#> Steel-EUROFER97
+Steel_material = openmc.Material(name='Steel_material')
 Steel_material.add_element('Fe', 0.8924, 'wo')
 Steel_material.add_element('C', 0.0011, 'wo')
 Steel_material.add_element('Cr', 0.09, 'wo')
@@ -51,43 +62,43 @@ Steel_material.add_element('W', 0.011, 'wo')
 Steel_material.add_element('Mn', 0.004, 'wo')
 Steel_material.add_element('Ta', 0.0012, 'wo')
 Steel_material.add_element('N', 0.0003, 'wo')
-#Shielding-B4C
+
+
+#> Shielding-B4C
+Shielding_material = openmc.Material(name='Shielding_material')
 Shielding_material.add_element('B',4.0,'ao')
 Shielding_material.add_element('C',1.0,'ao')
 Shielding_material.set_density('g/cm3',2.50)
-#List of Breeders-PbLi/FLiBe/Li/Li4SiO4
-    ##PbLi
+
+
+#> PbLi (breeder)
+Breeder_material = openmc.Material(name='Breeder_material')
 Breeder_material.add_element('Pb',0.83,'ao')
 Breeder_material.add_element('Li',0.17,'ao')
-#Breeder_material.add_element('Li',0.17,enrichment=92,enrichment_target='Li6')
 Breeder_material.set_density('g/cm3',9.5)
-    ##FLiBe
-Breeder_material.add_element('F',4.0,'ao')
-Breeder_material.add_element('Li',2.0,'ao')
-#Breeder_material.add_element('Li',2.0,enrichment=92,enrichment_target='Li6')
-Breeder_material.add_element('Be',1.0,'ao')
-Breeder_material.set_density('g/cm3',1.94)
-    ##Li
-Breeder_material.add_element('Li',1.0,'ao')
-#Breeder_material.add_element('Li',1.0,enrichment=92,enrichment_target='Li6')
-Breeder_material.set_density('g/cm3',0.534)
-    ##Li4SiO4
-Breeder_material.add_element('Li',4.0,'ao')
-#Breeder_material.add_element('Li',4.0,enrichment=92,enrichment_target='Li6')
-Breeder_material.add_element('Si',1.0,'ao')
-Breeder_material.add_element('O',4.0,'ao')
-Breeder_material.set_density('g/cm3',2.35)
-#Coolant-He (8MPA)
+
+#> definitions for file specific breeder materials
+Breeder97Steel3IB = openmc.Material(name = "Breeder97Steel3IB")
+Breeder97Steel3IB.add_element('Pb',0.83,'ao')
+Breeder97Steel3IB.add_element('Li',0.17,'ao')
+Breeder97Steel3IB.set_density('g/cm3',9.5)
+
+Breeder97Steel3OB = openmc.Material(name = "Breeder97Steel3OB")
+Breeder97Steel3OB.add_element('Pb',0.83,'ao')
+Breeder97Steel3OB.add_element('Li',0.17,'ao')
+Breeder97Steel3OB.set_density('g/cm3',9.5)
+
+
+#> Coolant-He (8MPA)
+Coolant_material = openmc.Material(name='Coolant_material')
 Coolant_material.add_element('He',1.0,'ao')
 Coolant_material.set_density('kg/m3',5.0)
 
 
-
-
-mat_list= openmc.Materials([Steel_material, Shielding_material, Breeder_material, Coolant_material])
+mat_list= openmc.Materials([Breeder97Steel3OB, Breeder97Steel3IB])
 mat_list.export_to_xml()
 
-mat_list.cross_sections = "/storage/work/irj5023/NUCE403/endfb-viii.0-hdf5/cross_sections.xml"
+mat_list.cross_sections = "/storage/work/irj5023/Capstone/jendl-5-hdf5/cross_sections.xml"
 print('> Materials Export Success')
 
 
@@ -95,12 +106,17 @@ print('> Materials Export Success')
 #       GEOMETRY DEFINITION
 # ################################################
 
-download(STARmodel_url)
-dag_univ = openmc.DAGMCUniverse('dagmc.h5m')
-geometry = openmc.Geometry(dag_univ)
+dag_univ = openmc.DAGMCUniverse("dagmc.h5m", auto_geom_ids = True)
+root_cell = openmc.Cell(fill = dag_univ)
+root_cell.region = -openmc.Sphere(r = 2500.0, boundary_type = 'vacuum')
+cell_count = dag_univ.n_cells
+print(f"Number of Cells within Model: {cell_count}")
+print(f"Path to Model:  {dag_univ.filename}")
+print(f"Cells: {dag_univ.get_all_cells}")
+# , padding_distance = 30.0
+#sim_univ = dag_univ.bounded_universe(bounding_cell_id= 999, boundary_type = 'vacuum')
+geometry = openmc.Geometry([root_cell,])
 geometry.export_to_xml()
-#print(geometry) #Look into plotting later
-#print(mat_list)
 print('> Geometry Export Success')
 
 # #################################################
@@ -168,6 +184,20 @@ print('> Sources Success')
 #       TALLIES
 # #################################################
 
+external_mesh = openmc.SphericalMesh(
+r_grid = (0,10,1000) #(mid, outer, subdivide the radial direction)
+)
+energy_filter_thermal = openmc.EnergyFilter([0.0, 1.0e6]) # eV
+energy_filter_fast = openmc.EnergyFilter([1.0e6, 14.0e6]) # eV
+
+mesh_filter = openmc.MeshFilter(external_mesh)
+tally_leak = openmc.Tally(name='neutron_leakage')
+tally_leak.filters = [energy_filter_fast, energy_filter_thermal, mesh_filter]
+tally_leak.scores= ['flux']
+
+tallies = openmc.Tallies([tally_leak])
+tallies.export_to_xml()
+
 ###############################################################################
 # Define problem settings
 ###############################################################################
@@ -182,6 +212,7 @@ settings.source = sources
 settings.export_to_xml()
 
 print(settings)
+
 
 # ################################
 #  Plots Definition
@@ -214,7 +245,7 @@ openmc.plot_geometry()
 #plots.export_to_xml()
 
 # Set the environment variable for cross sections
-os.environ["OPENMC_CROSS_SECTIONS"] = "/data/endfb-viii.0-hdf5/cross_sections.xml"
+os.environ["OPENMC_CROSS_SECTIONS"] = "/storage/work/irj5023/Capstone/jendl-5-hdf5/cross_sections.xml"
 
 openmc.plot_geometry()
 openmc.run()

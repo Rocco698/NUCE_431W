@@ -81,11 +81,14 @@ print('materials export success')
 #       GEOMETRY DEFINITION
 # ################################################
 
-dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/Rocco_testing/Breeder_Outer_Only.h5m', auto_geom_ids = True)
+dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/Rocco_testing/output.h5m', auto_geom_ids = True)
+
+model = openmc.Model()
+model.geometry = openmc.Geometry(root = )
 
 root_cell = openmc.Cell(fill = dag_univ)
 
-root_cell.region = -openmc.Sphere(r = 17000.0, boundary_type = 'vacuum')
+root_cell.region = -openmc.Sphere(r = 2500.0, boundary_type = 'vacuum')
 
 cell_count = dag_univ.n_cells
 
@@ -193,22 +196,20 @@ norm_activ = df.loc[:,"norm"].tolist()
 #       TALLIES
 # #################################################
 
-tallies_file = openmc.Tallies()                 #? create a tallies.out file
+tallies_file = openmc.Tallies()
 
+mesh = openmc.RegularMesh()
+mesh.dimension = [1, 1000, 1000]
+mesh.lower_left = [-25.0, -25.0, -25.0]
+mesh.upper_right = [25.0, 25.0, 25.0]
 
-breeder_mesh = openmc.RegularMesh()
-breeder_mesh.dimension = [100,100]
-breeder_mesh.lower_left = [-15000.0, -15000.0]
-breeder_mesh.upper_right = [15000.0, 15000.0]
+mesh_filter = openmc.MeshFilter(mesh)
 
-breeder_mesh_filter = openmc.MeshFilter(breeder_mesh)
+tally_f = openmc.Tally(name = 'flux')
+tally_f.filters = [mesh_filter]
+tally_f.scores = ['flux', 'absorption']
 
-breeder_universe_filter = openmc.UniverseFilter(dag_univ)
-
-flux_tally = openmc.Tally(name = 'flux')
-flux_tally.filters = [breeder_mesh]
-flux_tally.scores = ['flux']
-tallies_file.append(flux_tally)
+tallies_file.append(tally_f)
 
 
 tallies_file.export_to_xml()
@@ -240,7 +241,6 @@ plot1.color_by = 'material'
 plot1.colors = {
     Breeder97Steel3OB: 'black',
     Breeder97Steel3IB: 'deeppink',
-    Breeder_material: 'blue',
 }
 plot1.filename = 'TESTIMG'
 plot1.pixels = (900,900)

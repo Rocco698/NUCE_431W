@@ -20,27 +20,36 @@ import urllib.request
 
 sp = openmc.StatePoint('statepoint.10.h5')
 
-flux_tally = sp.get_tally(scores = ['flux'])
+flux_tally = sp.get_tally(scores = ['flux', 'absorption'])
 
 print(flux_tally)
-
 flux_tally.sum
+
 
 print(flux_tally.mean.shape)
 (flux_tally.mean, flux_tally.std_dev)
 
 flux = flux_tally.get_slice(scores = ['flux'])
+absorption = flux_tally.get_slice(scores = ['absorption'])
 
 print(flux)
 
-flux.std_dev.shape = (100, 100)
-flux.mean.shape = (100, 100)
+flux.std_dev.shape = (1000, 1000)
+flux.mean.shape = (1000, 1000)
+
+absorption.std_dev.shape = (1000, 1000)
+absorption.mean.shape = (1000, 1000)
 
 
 
 plt.plot(121)
 plt.imshow(flux.mean)
 plt.savefig('fluxmap2.png', dpi = 300)
+
+plt.plot(121)
+plt.imshow(absorption.mean)
+plt.savefig('absorptionmap.png', dpi = 300)
+
 plt.show()
 
 

@@ -1,3 +1,4 @@
 STAR5_Whole.h5m filter=lfs diff=lfs merge=lfs -text
 output.h5m filter=lfs diff=lfs merge=lfs -text
 Breeder_Outer_Only.h5m filter=lfs diff=lfs merge=lfs -text
+tallies.out filter=lfs diff=lfs merge=lfs -text

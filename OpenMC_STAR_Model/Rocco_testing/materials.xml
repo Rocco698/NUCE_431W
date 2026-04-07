@@ -1,26 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
 <materials>
-  <material id="3" name="Breeder_material">
-    <density value="2.35" units="g/cm3"/>
+  <material id="5" name="Breeder97Steel3IB">
+    <density value="9.5" units="g/cm3"/>
     <nuclide name="Pb204" ao="0.01162"/>
     <nuclide name="Pb206" ao="0.20002999999999999"/>
     <nuclide name="Pb207" ao="0.18342999999999998"/>
     <nuclide name="Pb208" ao="0.43492"/>
     <nuclide name="Li6" ao="0.012901300000000001"/>
     <nuclide name="Li7" ao="0.1570987"/>
-    <nuclide name="F19" ao="4.0"/>
-    <nuclide name="Li6" ao="0.15178"/>
-    <nuclide name="Li7" ao="1.84822"/>
-    <nuclide name="Be9" ao="1.0"/>
-    <nuclide name="Li6" ao="0.07589"/>
-    <nuclide name="Li7" ao="0.92411"/>
-    <nuclide name="Li6" ao="0.30356"/>
-    <nuclide name="Li7" ao="3.69644"/>
-    <nuclide name="Si28" ao="0.9222968"/>
-    <nuclide name="Si29" ao="0.0468316"/>
-    <nuclide name="Si30" ao="0.0308716"/>
-    <nuclide name="O16" ao="3.9904824"/>
-    <nuclide name="O17" ao="0.001516"/>
-    <nuclide name="O18" ao="0.0080016"/>
+  </material>
+  <material id="6" name="Breeder97Steel3OB">
+    <density value="9.5" units="g/cm3"/>
+    <nuclide name="Pb204" ao="0.01162"/>
+    <nuclide name="Pb206" ao="0.20002999999999999"/>
+    <nuclide name="Pb207" ao="0.18342999999999998"/>
+    <nuclide name="Pb208" ao="0.43492"/>
+    <nuclide name="Li6" ao="0.012901300000000001"/>
+    <nuclide name="Li7" ao="0.1570987"/>
   </material>
 </materials>

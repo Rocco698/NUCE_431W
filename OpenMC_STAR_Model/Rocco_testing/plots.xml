@@ -3,7 +3,8 @@
   <plot id="1" filename="TESTIMG" color_by="material" type="slice" basis="yz">
     <pixels>900 900</pixels>
     <origin>0.0 0.0 0.0</origin>
-    <width>15000 15000</width>
+    <width>1500 1500</width>
+    <color id="4" rgb="255 20 147"/>
     <color id="5" rgb="255 20 147"/>
     <color id="6" rgb="0 0 0"/>
   </plot>

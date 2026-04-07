@@ -70,7 +70,7 @@ Coolant_material.add_element('He',1.0,'ao')
 Coolant_material.set_density('kg/m3',5.0)
 
 
-mat_list= openmc.Materials([Breeder97Steel3OB, Breeder97Steel3IB])
+mat_list= openmc.Materials([Breeder_material])
 mat_list.export_to_xml()
 
 mat_list.cross_sections = "/Users/rocco698/Desktop/JENDL5/jendl-5-hdf5/cross_sections.xml"
@@ -81,10 +81,7 @@ print('materials export success')
 #       GEOMETRY DEFINITION
 # ################################################
 
-dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/Rocco_testing/output.h5m', auto_geom_ids = True)
-
-model = openmc.Model()
-model.geometry = openmc.Geometry(root = )
+dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/Rocco_testing/Breeder97Steel3OB_scaled.h5m', auto_geom_ids = True)
 
 root_cell = openmc.Cell(fill = dag_univ)
 
@@ -200,14 +197,14 @@ tallies_file = openmc.Tallies()
 
 mesh = openmc.RegularMesh()
 mesh.dimension = [1, 1000, 1000]
-mesh.lower_left = [-25.0, -25.0, -25.0]
-mesh.upper_right = [25.0, 25.0, 25.0]
+mesh.lower_left = [-1500.0, -1500.0, -1500.0]
+mesh.upper_right = [1500.0, 1500.0, 1500.0]
 
 mesh_filter = openmc.MeshFilter(mesh)
 
 tally_f = openmc.Tally(name = 'flux')
 tally_f.filters = [mesh_filter]
-tally_f.scores = ['flux', 'absorption']
+tally_f.scores = ['flux', 'absorption', '(n,t)']
 
 tallies_file.append(tally_f)
 
@@ -222,7 +219,7 @@ settings = openmc.Settings()
 settings.run_mode = 'fixed source'
 settings.dagmc = True
 settings.batches = 10
-settings.particles = 1000
+settings.particles = 5000
 settings.source = sources
 settings.source_rejection_fraction = 0.05
 settings.export_to_xml()
@@ -233,7 +230,7 @@ print(settings)
 #  Plots Definition
 # ################################
 
-ww = 15000
+ww = 1500
 plot1 = openmc.Plot()
 plot1.width = (ww,ww)
 plot1.basis = 'yz'
@@ -241,6 +238,7 @@ plot1.color_by = 'material'
 plot1.colors = {
     Breeder97Steel3OB: 'black',
     Breeder97Steel3IB: 'deeppink',
+    Breeder_material: 'deeppink',
 }
 plot1.filename = 'TESTIMG'
 plot1.pixels = (900,900)

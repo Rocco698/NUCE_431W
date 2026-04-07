@@ -2,14 +2,14 @@
 <tallies>
   <mesh id="1">
     <dimension>1 1000 1000</dimension>
-    <lower_left>-25.0 -25.0 -25.0</lower_left>
-    <upper_right>25.0 25.0 25.0</upper_right>
+    <lower_left>-1500.0 -1500.0 -1500.0</lower_left>
+    <upper_right>1500.0 1500.0 1500.0</upper_right>
   </mesh>
   <filter id="1" type="mesh">
     <bins>1</bins>
   </filter>
   <tally id="1" name="flux">
     <filters>1</filters>
-    <scores>flux absorption</scores>
+    <scores>flux absorption (n,t)</scores>
   </tally>
 </tallies>

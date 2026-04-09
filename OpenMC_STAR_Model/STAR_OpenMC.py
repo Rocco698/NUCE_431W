@@ -157,9 +157,9 @@ def onion_ring_source(radius: float, z_placement: float, activity: float, #these
         #raise ValueError("Temperature must be a float strictly greater than 0.")
     source = IndependentSource()
     source.space = openmc.stats.CylindricalIndependent(
-        r=openmc.stats.Discrete([radius], [1]),
+        r=openmc.stats.Discrete([radius]*100, [1]),
         phi=openmc.stats.Uniform(a=angles[0], b=angles[1]),
-        z=openmc.stats.Discrete([z_placement], [1]),
+        z=openmc.stats.Discrete([z_placement]*100, [1]),
         origin=(0.0, 0.0, 0.0) )
     source.energy =openmc.stats.Discrete([14.0e6], [1.0]) # (14 MeV neutrons, 100% distribution)
     source.angle = openmc.stats.Isotropic()

@@ -70,7 +70,7 @@ Coolant_material.add_element('He',1.0,'ao')
 Coolant_material.set_density('kg/m3',5.0)
 
 
-mat_list= openmc.Materials([Breeder_material])
+mat_list= openmc.Materials([Breeder_material, Steel_material, Shielding_material])
 mat_list.export_to_xml()
 
 mat_list.cross_sections = "/Users/rocco698/Desktop/JENDL5/jendl-5-hdf5/cross_sections.xml"
@@ -81,7 +81,7 @@ print('materials export success')
 #       GEOMETRY DEFINITION
 # ################################################
 
-dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/Rocco_testing/Breeder97Steel3OB_scaled.h5m', auto_geom_ids = True)
+dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/CAD_TO_OPENMC/Scaled_STL_output/_scaled.h5m', auto_geom_ids = True)
 
 root_cell = openmc.Cell(fill = dag_univ)
 
@@ -156,9 +156,9 @@ def onion_ring_source(radius: float, z_placement: float, activity: float, #> the
     source = IndependentSource()
 
     source.space = openmc.stats.CylindricalIndependent(
-        r=openmc.stats.Discrete([radius], [1]),
+        r=openmc.stats.Discrete([radius*100], [1]),
         phi=openmc.stats.Uniform(a=angles[0], b=angles[1]),
-        z=openmc.stats.Discrete([z_placement], [1]),
+        z=openmc.stats.Discrete([z_placement*100], [1]),
         origin=(0.0, 0.0, 0.0) )
     source.energy =openmc.stats.Discrete([14.0e6], [1.0]) #> (14 MeV neutrons, 100% distribution)
     source.angle = openmc.stats.Isotropic()
@@ -197,8 +197,8 @@ tallies_file = openmc.Tallies()
 
 mesh = openmc.RegularMesh()
 mesh.dimension = [1, 1000, 1000]
-mesh.lower_left = [-1500.0, -1500.0, -1500.0]
-mesh.upper_right = [1500.0, 1500.0, 1500.0]
+mesh.lower_left = [-2000.0, -2000.0, -2000.0]
+mesh.upper_right = [2000.0, 2000.0, 2000.0]
 
 mesh_filter = openmc.MeshFilter(mesh)
 
@@ -221,7 +221,7 @@ settings.dagmc = True
 settings.batches = 10
 settings.particles = 5000
 settings.source = sources
-settings.source_rejection_fraction = 0.05
+settings.source_rejection_fraction = 0.01
 settings.export_to_xml()
 
 print(settings)
@@ -230,15 +230,15 @@ print(settings)
 #  Plots Definition
 # ################################
 
-ww = 1500
+ww = 2000
 plot1 = openmc.Plot()
 plot1.width = (ww,ww)
 plot1.basis = 'yz'
 plot1.color_by = 'material'
 plot1.colors = {
-    Breeder97Steel3OB: 'black',
-    Breeder97Steel3IB: 'deeppink',
     Breeder_material: 'deeppink',
+    Shielding_material: 'black',
+    Steel_material: 'blue',
 }
 plot1.filename = 'TESTIMG'
 plot1.pixels = (900,900)

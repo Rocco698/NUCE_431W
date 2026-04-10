@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<geometry>
+  <cell id="1" fill="1" region="-1" universe="2"/>
+  <dagmc_universe id="1" auto_geom_ids="true" filename="/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/Rocco_testing/Breeder_scaled.h5m"/>
+  <surface id="1" type="sphere" boundary="vacuum" coeffs="0.0 0.0 0.0 2000.0"/>
+</geometry>

@@ -202,11 +202,18 @@ mesh.upper_right = [2000.0, 2000.0, 2000.0]
 
 mesh_filter = openmc.MeshFilter(mesh)
 
+breeding_filter = openmc.MaterialFilter(bins = Breeder_material)
+
 tally_f = openmc.Tally(name = 'flux')
 tally_f.filters = [mesh_filter]
 tally_f.scores = ['flux', 'absorption', '(n,t)']
 
+tally_breeding = openmc.Tally(name = 'Tritium')
+tally_breeding.filters = [breeding_filter]
+tally_breeding.scores = ['(n,t)']
+
 tallies_file.append(tally_f)
+tallies_file.append(tally_breeding)
 
 
 tallies_file.export_to_xml()
@@ -234,6 +241,7 @@ ww = 2000
 plot1 = openmc.Plot()
 plot1.width = (ww,ww)
 plot1.basis = 'yz'
+plot1.pixels = [1920, 1080]
 plot1.color_by = 'material'
 plot1.colors = {
     Breeder_material: 'deeppink',

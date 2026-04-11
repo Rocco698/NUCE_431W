@@ -20,11 +20,12 @@ import urllib.request
 
 sp = openmc.StatePoint('statepoint.10.h5')
 
+
+#> FLUX, TRITIUM PRODUCTION, & ABSORPTION TALLY (FOR VISUAL)
 flux_tally = sp.get_tally(scores = ['flux', 'absorption', '(n,t)'])
 
 print(flux_tally)
 flux_tally.sum
-
 
 print(flux_tally.mean.shape)
 (flux_tally.mean, flux_tally.std_dev)
@@ -32,8 +33,6 @@ print(flux_tally.mean.shape)
 flux = flux_tally.get_slice(scores = ['flux'])
 absorption = flux_tally.get_slice(scores = ['absorption'])
 Breeding = flux_tally.get_slice(scores = ['(n,t)'])
-
-print(flux)
 
 flux.std_dev.shape = (1000, 1000)
 flux.mean.shape = (1000, 1000)
@@ -44,7 +43,9 @@ absorption.mean.shape = (1000, 1000)
 Breeding.std_dev.shape = (1000, 1000)
 Breeding.mean.shape = (1000, 1000)
 
+print(flux)
 
+#> PLOTTING
 
 plt.plot(121)
 plt.imshow(flux.mean)
@@ -57,8 +58,6 @@ plt.savefig('absorptionmap.png', dpi = 300)
 plt.plot(121)
 plt.imshow(Breeding.mean)
 plt.savefig('Breedingmap.png', dpi = 300)
-
-plt.show()
 
 
 

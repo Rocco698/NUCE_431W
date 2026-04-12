@@ -17,6 +17,6 @@
   </tally>
   <tally id="2" name="Tritium">
     <filters>2</filters>
-    <scores>(n,t)</scores>
+    <scores>(n,t) (n,Xt)</scores>
   </tally>
 </tallies>

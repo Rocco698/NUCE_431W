@@ -210,7 +210,7 @@ tally_f.scores = ['flux', 'absorption', '(n,t)']
 
 tally_breeding = openmc.Tally(name = 'Tritium')
 tally_breeding.filters = [breeding_filter]
-tally_breeding.scores = ['(n,t)']
+tally_breeding.scores = ['(n,t)', '(n,Xt)']
 
 tallies_file.append(tally_f)
 tallies_file.append(tally_breeding)

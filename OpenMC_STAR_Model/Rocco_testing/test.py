@@ -47,21 +47,22 @@ Shielding_material.set_density('g/cm3',2.50)
 
 
 #> PbLi (breeder)
+'''
 Breeder_material = openmc.Material(name='Breeder_material')
 Breeder_material.add_element('Pb',0.83,'ao')
 Breeder_material.add_element('Li',0.17,'ao')
 Breeder_material.set_density('g/cm3',9.5)
+'''
 
 #> definitions for file specific breeder materials
-Breeder97Steel3IB = openmc.Material(name = "Breeder97Steel3IB")
-Breeder97Steel3IB.add_element('Pb',0.83,'ao')
-Breeder97Steel3IB.add_element('Li',0.17,'ao')
-Breeder97Steel3IB.set_density('g/cm3',9.5)
 
-Breeder97Steel3OB = openmc.Material(name = "Breeder97Steel3OB")
-Breeder97Steel3OB.add_element('Pb',0.83,'ao')
-Breeder97Steel3OB.add_element('Li',0.17,'ao')
-Breeder97Steel3OB.set_density('g/cm3',9.5)
+#> FLiBe
+Breeder_material = openmc.Material(name = 'Breeder_material')
+Breeder_material.add_element('Li', 0.285, 'ao')
+Breeder_material.add_element('F', 0.572, 'ao')
+Breeder_material.add_element('Be', 0.143, 'ao')
+Breeder_material.set_density('g/cm3',2.0)
+
 
 
 #> Coolant-He (8MPA)

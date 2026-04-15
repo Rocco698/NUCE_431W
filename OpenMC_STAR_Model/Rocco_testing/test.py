@@ -40,29 +40,73 @@ Steel_material.add_element('N', 0.0003, 'wo')
 
 
 #> Shielding-B4C
+
 Shielding_material = openmc.Material(name='Shielding_material')
 Shielding_material.add_element('B',4.0,'ao')
 Shielding_material.add_element('C',1.0,'ao')
 Shielding_material.set_density('g/cm3',2.50)
 
+'''
+Shielding_material = openmc.Material(name = 'Shielding_material')
+Shielding_material.add_element('Pb', 1.0, 'ao')
+Shielding_material.set_density('g/cm3', 11.3)
+'''
+#> Copper50Hatelloy50HTS
+
+'''
+#> Hastelly C-276
+Hastelloy = openmc.Material(name = 'Hastelloy')
+Hastelloy.add_element('Ni', 0.6177, 'ao')
+Hastelloy.add_element('Cr', 0.1884, 'ao')
+Hastelloy.add_element('Mo', 0.1053, 'ao')
+Hastelloy.add_element('Fe', 0.0623, 'ao')
+Hastelloy.add_element('W', 0.0129, 'ao')
+Hastelloy.add_element('Co', 0.0134, 'ao')
+Hastelloy.set_density('g/cm3', 8.89)
+
+Copper = openmc.Material(name = 'Copper')
+Copper.add_element('Cu', 1.0)
+Copper.set_density('g/cm3', 8.96)
+
+Copper_material = openmc.Material.mix_materials([Hastelloy, Copper], [0.5, 0.5], 'vo')
+Copper_material.name = 'Copper_material'
+'''
+
+
 
 #> PbLi (breeder)
-'''
+
 Breeder_material = openmc.Material(name='Breeder_material')
-Breeder_material.add_element('Pb',0.83,'ao')
-Breeder_material.add_element('Li',0.17,'ao')
-Breeder_material.set_density('g/cm3',9.5)
-'''
+Breeder_material.add_element('Pb', 0.60, 'ao')
+Breeder_material.add_element('Li', 0.40, 'ao')
+Breeder_material.set_density('g/cm3', 10.52)
+
 
 #> definitions for file specific breeder materials
 
 #> FLiBe
+'''
 Breeder_material = openmc.Material(name = 'Breeder_material')
 Breeder_material.add_element('Li', 0.285, 'ao')
 Breeder_material.add_element('F', 0.572, 'ao')
 Breeder_material.add_element('Be', 0.143, 'ao')
 Breeder_material.set_density('g/cm3',2.0)
+'''
+#> FLiNaK
+'''
+LiF = openmc.Material()
+LiF.add_elements_from_formula('LiF')
 
+NaF = openmc.Material()
+NaF.add_elements_from_formula('NaF')
+
+KF = openmc.Material()
+KF.add_elements_from_formula('KF')
+
+Breeder_material = openmc.Material.mix_materials([LiF, NaF, KF], [0.29, 0.29, 0.42], 'wo')
+Breeder_material.name = 'Breeder_material'
+Breeder_material.set_density('g/cm3', 2.0)
+'''
 
 
 #> Coolant-He (8MPA)
@@ -227,7 +271,7 @@ settings = openmc.Settings()
 settings.run_mode = 'fixed source'
 settings.dagmc = True
 settings.batches = 10
-settings.particles = 5000
+settings.particles = 10000
 settings.source = sources
 settings.source_rejection_fraction = 0.01
 settings.export_to_xml()
@@ -242,7 +286,7 @@ ww = 2000
 plot1 = openmc.Plot()
 plot1.width = (ww,ww)
 plot1.basis = 'yz'
-plot1.pixels = [1920, 1080]
+plot1.pixels = [3840, 2160]
 plot1.color_by = 'material'
 plot1.colors = {
     Breeder_material: 'deeppink',

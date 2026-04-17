@@ -31,12 +31,16 @@
     <nuclide name="C13" ao="0.011078"/>
   </material>
   <material id="4" name="Breeder_material">
-    <density value="10.52" units="g/cm3"/>
-    <nuclide name="Pb204" ao="0.0084"/>
-    <nuclide name="Pb206" ao="0.14459999999999998"/>
-    <nuclide name="Pb207" ao="0.1326"/>
-    <nuclide name="Pb208" ao="0.3144"/>
-    <nuclide name="Li6" ao="0.030356"/>
-    <nuclide name="Li7" ao="0.36964400000000003"/>
+    <density value="3.43" units="g/cm3"/>
+    <nuclide name="Li6" ao="0.025296666666666665"/>
+    <nuclide name="Li7" ao="0.3080366666666666"/>
+    <nuclide name="Ti46" ao="0.01375"/>
+    <nuclide name="Ti47" ao="0.012399999999999998"/>
+    <nuclide name="Ti48" ao="0.12286666666666665"/>
+    <nuclide name="Ti49" ao="0.009016666666666666"/>
+    <nuclide name="Ti50" ao="0.008633333333333333"/>
+    <nuclide name="O16" ao="0.4988103"/>
+    <nuclide name="O17" ao="0.0001895"/>
+    <nuclide name="O18" ao="0.0010002"/>
   </material>
 </materials>

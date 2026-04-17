@@ -13,6 +13,7 @@ from typing import Tuple, List, Dict
 import pandas as pd                                 #> data import via excel
 import matplotlib.pyplot as plt                     #> plotting
 from IPython.display import Image                   #> jupyter
+import neutronics_material_maker as nmm             #> does not work don't use
 
 from openmc_plasma_source import fusion_ring_source #> Ring source, make sure to download: pip install openmc_plasma_source
 import urllib.request
@@ -21,6 +22,9 @@ from openmc_regular_mesh_plotter import plot_mesh_tally
 # ##############################################
 #       MATERIALS
 # ##############################################
+
+all_materials = nmm.AvailableMaterials()
+print(all_materials.keys())
 
 #> plasma_material (void)
 plasma_material = openmc.Material(name = 'Plasma_Material')
@@ -75,12 +79,12 @@ Copper_material.name = 'Copper_material'
 
 
 #> PbLi (breeder)
-
+'''
 Breeder_material = openmc.Material(name='Breeder_material')
 Breeder_material.add_element('Pb', 0.60, 'ao')
 Breeder_material.add_element('Li', 0.40, 'ao')
 Breeder_material.set_density('g/cm3', 10.52)
-
+'''
 
 #> definitions for file specific breeder materials
 
@@ -108,6 +112,11 @@ Breeder_material.name = 'Breeder_material'
 Breeder_material.set_density('g/cm3', 2.0)
 '''
 
+#> Li4SiO4
+
+Breeder_material = openmc.Material(name = 'Breeder_material')
+Breeder_material.add_elements_from_formula('Li2TiO3')
+Breeder_material.set_density('g/cm3', 3.43)
 
 #> Coolant-He (8MPA)
 Coolant_material = openmc.Material(name='Coolant_material')

@@ -26,11 +26,6 @@ from openmc_regular_mesh_plotter import plot_mesh_tally
 all_materials = nmm.AvailableMaterials()
 print(all_materials.keys())
 
-#> plasma_material (void)
-plasma_material = openmc.Material(name = 'Plasma_Material')
-plasma_material.add_element('Ar', 1.0)
-plasma_material.set_density('g/cm3', 0.00000000000000001)
-
 
 #> Steel-EUROFER97
 Steel_material = openmc.Material(name='Steel_material')
@@ -77,21 +72,18 @@ Copper_material.name = 'Copper_material'
 '''
 
 #> MULTIPLIER ONLY
-
 Mult_material = openmc.Material(name = 'Mult_material')
 Mult_material.add_element('Pb', 1.0)
 Mult_material.set_density('g/cm3', 10.5)
 
-
-
 #> PbLi (breeder)
-
+'''
 Breeder_material = openmc.Material(name='Breeder_material')
-Breeder_material.add_element('Pb', 0.83)
+Breeder_material.add_element('Pb', 0.83, 'ao')
 #Breeder_material.add_element('Li', 0.17, 'ao', enrichment=90.0, enrichment_target='Li6', enrichment_type='ao')
 Breeder_material.add_element('Li', 0.17, 'ao')
 Breeder_material.set_density('g/cm3', 9.5)
-
+'''
 
 #> definitions for file specific breeder materials
 
@@ -122,9 +114,55 @@ Breeder_material.set_density('g/cm3', 2.0)
 #> Li4SiO4
 '''
 Breeder_material = openmc.Material(name = 'Breeder_material')
-Breeder_material.add_elements_from_formula('Li2TiO3')
+Breeder_material.add_elements_from_formula('Li4SiO4', enrichment_target='Li6', enrichment=90.0, enrichment_type='ao')
+Breeder_material.set_density('g/cm3', 2.39)
+'''
+
+#> Li8ZrO6
+'''
+Breeder_material = openmc.Material(name = 'Breeder_material')
+Breeder_material.add_elements_from_formula('Li8ZrO6', enrichment_target='Li6', enrichment=90.0, enrichment_type='ao')
+Breeder_material.set_density('g/cm3', 2.58)
+'''
+
+#> Li2O
+'''
+Breeder_material = openmc.Material(name = 'Breeder_material')
+Breeder_material.add_elements_from_formula('Li2O', enrichment_target='Li6', enrichment=90.0, enrichment_type='ao')
+Breeder_material.set_density('g/cm3', 2.013)
+'''
+#> LiAlO2 
+Breeder_material = openmc.Material(name = 'Breeder_material')
+Breeder_material.add_elements_from_formula('LiAlO2', enrichment_target='Li6', enrichment=30.0, enrichment_type='ao')
+Breeder_material.set_density('g/cm3', 2.62)
+'''
+#> Li5AlO4
+Breeder_material = openmc.Material(name = 'Breeder_material')
+Breeder_material.add_elements_from_formula('Li5AlO4', enrichment_target='Li6', enrichment=30.0, enrichment_type='ao')
+Breeder_material.set_density('g/cm3', 2.17)
+
+#> Li2ZrO3
+Breeder_material = openmc.Material(name = 'Breeder_material')
+Breeder_material.add_elements_from_formula('Li2ZrO3', enrichment_target='Li6', enrichment=30.0, enrichment_type='ao')
+Breeder_material.set_density('g/cm3', 4.15)
+
+#> Li2TiO3
+Breeder_material = openmc.Material(name = 'Breeder_material')
+Breeder_material.add_elements_from_formula('Li2TiO3', enrichment_target='Li6', enrichment=30.0, enrichment_type='ao')
 Breeder_material.set_density('g/cm3', 3.43)
 '''
+
+
+
+
+
+
+
+
+
+
+
+
 #> Coolant-He (8MPA)
 Coolant_material = openmc.Material(name='Coolant_material')
 Coolant_material.add_element('He',1.0,'ao')
@@ -146,7 +184,9 @@ dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/N
 
 root_cell = openmc.Cell(fill = dag_univ)
 
-root_cell.region = -openmc.Sphere(r = 2500.0, boundary_type = 'vacuum')
+boundary = openmc.Sphere(r = 2500.0, boundary_type = 'vacuum')
+
+root_cell.region = -boundary
 
 cell_count = dag_univ.n_cells
 
@@ -256,22 +296,30 @@ norm_activ = df.loc[:,"norm"].tolist()
 
 tallies_file = openmc.Tallies()
 
+#> mesh for visualization
 mesh = openmc.RegularMesh()
 mesh.dimension = [1, 1000, 1000]
-mesh.lower_left = [-2000.0, -2000.0, -2000.0]
-mesh.upper_right = [2000.0, 2000.0, 2000.0]
+mesh.lower_left = [-1000.0, -1000.0, -1000.0]
+mesh.upper_right = [1000.0, 1000.0, 1000.0]
 
 mesh_filter = openmc.MeshFilter(mesh)
 
+#> filter for TBR only
 breeding_filter = openmc.MaterialFilter(bins = Breeder_material)
 
+#> tallies for pictures
 tally_f = openmc.Tally(name = 'flux')
 tally_f.filters = [mesh_filter]
 tally_f.scores = ['flux', 'absorption', '(n,t)']
 
+#> TBR tally
 tally_breeding = openmc.Tally(name = 'Tritium')
 tally_breeding.filters = [breeding_filter]
 tally_breeding.scores = ['(n,t)', '(n,Xt)']
+
+#> current / leakage tally
+energy_bins = np.logspace(1, 8, 700)  # eV (from thermal → fast)
+energy_filter = openmc.EnergyFilter(energy_bins)
 
 tallies_file.append(tally_f)
 tallies_file.append(tally_breeding)

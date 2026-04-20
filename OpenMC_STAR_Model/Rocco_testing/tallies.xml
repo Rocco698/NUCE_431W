@@ -2,14 +2,14 @@
 <tallies>
   <mesh id="1">
     <dimension>1 1000 1000</dimension>
-    <lower_left>-2000.0 -2000.0 -2000.0</lower_left>
-    <upper_right>2000.0 2000.0 2000.0</upper_right>
+    <lower_left>-1000.0 -1000.0 -1000.0</lower_left>
+    <upper_right>1000.0 1000.0 1000.0</upper_right>
   </mesh>
   <filter id="1" type="mesh">
     <bins>1</bins>
   </filter>
   <filter id="2" type="material">
-    <bins>5</bins>
+    <bins>4</bins>
   </filter>
   <tally id="1" name="flux">
     <filters>1</filters>

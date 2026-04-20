@@ -107,8 +107,9 @@ print('> Materials Export Success')
 # ################################################
 
 dag_univ = openmc.DAGMCUniverse("dagmc.h5m", auto_geom_ids = True)
+boundary = openmc.Sphere(r=2500, boundary_type='vacuum')
 root_cell = openmc.Cell(fill = dag_univ)
-root_cell.region = -openmc.Sphere(r = 2500.0, boundary_type = 'vacuum')
+root_cell.region = -boundary
 cell_count = dag_univ.n_cells
 print(f"Number of Cells within Model: {cell_count}")
 print(f"Path to Model:  {dag_univ.filename}")
@@ -184,18 +185,35 @@ print('> Sources Success')
 #       TALLIES
 # #################################################
 
-external_mesh = openmc.SphericalMesh(
-r_grid = (0,10,1000) #(mid, outer, subdivide the radial direction)
-)
-energy_filter_thermal = openmc.EnergyFilter([0.0, 1.0e6]) # eV
-energy_filter_fast = openmc.EnergyFilter([1.0e6, 14.0e6]) # eV
+# external_mesh = openmc.SphericalMesh(
+# r_grid = (0,10,1000) #(mid, outer, subdivide the radial direction)
+# )
+# energy_filter_thermal = openmc.EnergyFilter([0.0, 1.0e6]) # eV
+# energy_filter_fast = openmc.EnergyFilter([1.0e6, 14.0e6]) # eV
 
-mesh_filter = openmc.MeshFilter(external_mesh)
-tally_leak = openmc.Tally(name='neutron_leakage')
-tally_leak.filters = [energy_filter_fast, energy_filter_thermal, mesh_filter]
-tally_leak.scores= ['flux']
+# mesh_filter = openmc.MeshFilter(external_mesh)
+# tally_leak = openmc.Tally(name='neutron_leakage')
+# tally_leak.filters = [energy_filter_fast, energy_filter_thermal, mesh_filter]
+# tally_leak.scores= ['flux']
+energy_bins = np.logspace(1, 2e7, 700)  # eV (from thermal → fast)
+energy_filter = openmc.EnergyFilter(energy_bins)
 
-tallies = openmc.Tallies([tally_leak])
+current_mesh = openmc.RegularMesh() #a 'cut' through the STAR reactor
+current_mesh.dimension = [1,2500,2500]
+current_mesh.lower_left = [-1e-3,-2500, -2500]
+current_mesh.uper_right = [1e-3, 2500, 2500]
+
+boundary_filter = openmc.SurfaceFilter(boundary) #outer surface of the system
+
+tally_current = openmc.Tally(name='surface_current')
+tally_current.filter = [current_mesh]
+tally_current.scores = ['flux']
+
+leakage_dist = openmc.Tally(name='leakage_distribution')
+leakage_dist = [boundary_filter, energy_filter]
+leakage_dist = ['current']
+
+tallies = openmc.Tallies([tally_current,leakage_dist])
 tallies.export_to_xml()
 
 ###############################################################################

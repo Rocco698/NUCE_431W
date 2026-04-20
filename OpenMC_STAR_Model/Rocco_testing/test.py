@@ -76,15 +76,22 @@ Copper_material = openmc.Material.mix_materials([Hastelloy, Copper], [0.5, 0.5],
 Copper_material.name = 'Copper_material'
 '''
 
+#> MULTIPLIER ONLY
+
+Mult_material = openmc.Material(name = 'Mult_material')
+Mult_material.add_element('Pb', 1.0)
+Mult_material.set_density('g/cm3', 10.5)
+
 
 
 #> PbLi (breeder)
-'''
+
 Breeder_material = openmc.Material(name='Breeder_material')
-Breeder_material.add_element('Pb', 0.60, 'ao')
-Breeder_material.add_element('Li', 0.40, 'ao')
-Breeder_material.set_density('g/cm3', 10.52)
-'''
+Breeder_material.add_element('Pb', 0.83)
+#Breeder_material.add_element('Li', 0.17, 'ao', enrichment=90.0, enrichment_target='Li6', enrichment_type='ao')
+Breeder_material.add_element('Li', 0.17, 'ao')
+Breeder_material.set_density('g/cm3', 9.5)
+
 
 #> definitions for file specific breeder materials
 
@@ -113,11 +120,11 @@ Breeder_material.set_density('g/cm3', 2.0)
 '''
 
 #> Li4SiO4
-
+'''
 Breeder_material = openmc.Material(name = 'Breeder_material')
 Breeder_material.add_elements_from_formula('Li2TiO3')
 Breeder_material.set_density('g/cm3', 3.43)
-
+'''
 #> Coolant-He (8MPA)
 Coolant_material = openmc.Material(name='Coolant_material')
 Coolant_material.add_element('He',1.0,'ao')

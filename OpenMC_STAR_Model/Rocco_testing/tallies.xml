@@ -9,7 +9,7 @@
     <bins>1</bins>
   </filter>
   <filter id="2" type="material">
-    <bins>4</bins>
+    <bins>5</bins>
   </filter>
   <tally id="1" name="flux">
     <filters>1</filters>

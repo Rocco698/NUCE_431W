@@ -33,7 +33,6 @@ print(flux_tally.mean.shape)
 flux = flux_tally.get_slice(scores = ['flux'])
 absorption = flux_tally.get_slice(scores = ['absorption'])
 Breeding = flux_tally.get_slice(scores = ['(n,t)'])
-#Total_Breeding = flux_tally.get_slice(scores = ['(n,Xt)'])
 
 flux.std_dev.shape = (1000, 1000)
 flux.mean.shape = (1000, 1000)
@@ -43,9 +42,6 @@ absorption.mean.shape = (1000, 1000)
 
 Breeding.std_dev.shape = (1000, 1000)
 Breeding.mean.shape = (1000, 1000)
-
-#Total_Breeding.std_dev.shape = (1000, 1000)
-#Total_Breeding.mean.shape = (1000, 1000)
 
 print(flux)
 
@@ -62,10 +58,6 @@ plt.savefig('absorptionmap.png', dpi = 300)
 plt.plot(121)
 plt.imshow(Breeding.mean)
 plt.savefig('Breedingmap.png', dpi = 300)
-
-#plt.plot(121)
-#plt.imshow(Total_Breeding.mean)
-#plt.savefig('TotalBreedingMap.png', dpi = 300)
 
 
 

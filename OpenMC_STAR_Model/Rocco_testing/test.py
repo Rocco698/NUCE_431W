@@ -77,13 +77,13 @@ Mult_material.add_element('Pb', 1.0)
 Mult_material.set_density('g/cm3', 10.5)
 
 #> PbLi (breeder)
-'''
+
 Breeder_material = openmc.Material(name='Breeder_material')
 Breeder_material.add_element('Pb', 0.83, 'ao')
-#Breeder_material.add_element('Li', 0.17, 'ao', enrichment=90.0, enrichment_target='Li6', enrichment_type='ao')
-Breeder_material.add_element('Li', 0.17, 'ao')
+Breeder_material.add_element('Li', 0.17, 'ao', enrichment=30.0, enrichment_target='Li6', enrichment_type='ao')
+#Breeder_material.add_element('Li', 0.17, 'ao')
 Breeder_material.set_density('g/cm3', 9.5)
-'''
+
 
 #> definitions for file specific breeder materials
 
@@ -132,23 +132,27 @@ Breeder_material.add_elements_from_formula('Li2O', enrichment_target='Li6', enri
 Breeder_material.set_density('g/cm3', 2.013)
 '''
 #> LiAlO2 
+'''
 Breeder_material = openmc.Material(name = 'Breeder_material')
-Breeder_material.add_elements_from_formula('LiAlO2', enrichment_target='Li6', enrichment=30.0, enrichment_type='ao')
+Breeder_material.add_elements_from_formula('LiAlO2', enrichment_target='Li6', enrichment=90.0, enrichment_type='ao')
 Breeder_material.set_density('g/cm3', 2.62)
 '''
 #> Li5AlO4
+'''
 Breeder_material = openmc.Material(name = 'Breeder_material')
-Breeder_material.add_elements_from_formula('Li5AlO4', enrichment_target='Li6', enrichment=30.0, enrichment_type='ao')
+Breeder_material.add_elements_from_formula('Li5AlO4', enrichment_target='Li6', enrichment=90.0, enrichment_type='ao')
 Breeder_material.set_density('g/cm3', 2.17)
-
+'''
 #> Li2ZrO3
+'''
 Breeder_material = openmc.Material(name = 'Breeder_material')
-Breeder_material.add_elements_from_formula('Li2ZrO3', enrichment_target='Li6', enrichment=30.0, enrichment_type='ao')
+Breeder_material.add_elements_from_formula('Li2ZrO3', enrichment_target='Li6', enrichment=90.0, enrichment_type='ao')
 Breeder_material.set_density('g/cm3', 4.15)
-
+'''
 #> Li2TiO3
+'''
 Breeder_material = openmc.Material(name = 'Breeder_material')
-Breeder_material.add_elements_from_formula('Li2TiO3', enrichment_target='Li6', enrichment=30.0, enrichment_type='ao')
+Breeder_material.add_elements_from_formula('Li2TiO3', enrichment_target='Li6', enrichment=90.0, enrichment_type='ao')
 Breeder_material.set_density('g/cm3', 3.43)
 '''
 

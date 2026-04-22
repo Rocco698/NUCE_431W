@@ -22,7 +22,7 @@ sp = openmc.StatePoint('statepoint.10.h5')
 
 
 #> FLUX, TRITIUM PRODUCTION, & ABSORPTION TALLY (FOR VISUAL)
-flux_tally = sp.get_tally(scores = ['flux', 'absorption', '(n,t)'])
+flux_tally = sp.get_tally(scores = ['flux', 'absorption', '(n,t)', '(n,Xt)'])
 
 print(flux_tally)
 flux_tally.sum
@@ -33,6 +33,7 @@ print(flux_tally.mean.shape)
 flux = flux_tally.get_slice(scores = ['flux'])
 absorption = flux_tally.get_slice(scores = ['absorption'])
 Breeding = flux_tally.get_slice(scores = ['(n,t)'])
+all_breeding = flux_tally.get_slice(scores = ['(n,Xt)'])
 
 flux.std_dev.shape = (1000, 1000)
 flux.mean.shape = (1000, 1000)
@@ -42,6 +43,9 @@ absorption.mean.shape = (1000, 1000)
 
 Breeding.std_dev.shape = (1000, 1000)
 Breeding.mean.shape = (1000, 1000)
+
+all_breeding.std_dev.shape = (1000, 1000)
+all_breeding.mean.shape = (1000, 1000)
 
 print(flux)
 
@@ -58,6 +62,10 @@ plt.savefig('absorptionmap.png', dpi = 300)
 plt.plot(121)
 plt.imshow(Breeding.mean)
 plt.savefig('Breedingmap.png', dpi = 300)
+
+plt.plot(121)
+plt.imshow(all_breeding.mean)
+plt.savefig('Total_breeding_map.png', dpi = 300)
 
 
 

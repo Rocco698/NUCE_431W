@@ -5,8 +5,8 @@ from stl_to_h5m import stl_to_h5m
 
 stl_to_h5m(
     files_with_tags=[
-        ('Breeder97Steel3OB_scaled.stl', 'Breeder_material'),
-        ('Breeder97Steel3IB_scaled.stl', 'Breeder_material'),
+        ('Breeder97Steel3OB_scaled.stl', 'Mult_material'),
+        ('Breeder97Steel3IB_scaled.stl', 'Mult_material'),
 
         #('trans_316SSHTSInner1.stl', 'Steel_material'),
         #('trans_316SSHTSInner2.stl', 'Steel_material'),
@@ -34,13 +34,13 @@ stl_to_h5m(
         #('trans_316SSHTSOuter11.stl', 'Steel_material'),
         #('trans_316SSHTSOuter12.stl', 'Steel_material'),
 
-        ('trans_316SSInnerCoilStructure.stl', 'Steel_material'),
+        ('trans_316SSInnerCoilStructure.stl', 'Steel_material'), # DO NOT CHANGE, INVARIANT, NEEDS TO BE STEEL
 
 
-        ('trans_Shield97Steel3IBOuter.stl', 'Shielding_material'),
-        ('trans_Shield97Steel3Inner.stl', 'Shielding_material'),
-        ('trans_Shield97Steel3OB.stl', 'Shielding_material'),
+        ('trans_Shield97Steel3IBOuter.stl', 'Breeder_material'),
+        ('trans_Shield97Steel3Inner.stl', 'Breeder_material'),
+        ('trans_Shield97Steel3OB.stl', 'Breeder_material'),
         ('trans_Shield97316SS3InsideShield.stl', 'Shielding_material'),
     ],
-    h5m_filename='_scaled.h5m',
+    h5m_filename='config3_scaled.h5m',
 )

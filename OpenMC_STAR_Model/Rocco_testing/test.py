@@ -80,9 +80,10 @@ Mult_material.set_density('g/cm3', 10.5)
 
 Breeder_material = openmc.Material(name='Breeder_material')
 Breeder_material.add_element('Pb', 0.83, 'ao')
-Breeder_material.add_element('Li', 0.17, 'ao', enrichment=30.0, enrichment_target='Li6', enrichment_type='ao')
-#Breeder_material.add_element('Li', 0.17, 'ao')
-Breeder_material.set_density('g/cm3', 9.5)
+#Breeder_material.add_element('Li', 0.17, 'ao', enrichment=90.0, enrichment_target='Li6', enrichment_type='ao')
+Breeder_material.add_element('Li', 0.17, 'ao')
+#Breeder_material.add_element('Li', 1.0, enrichment=90.0, enrichment_target='Li6', enrichment_type='ao')
+Breeder_material.set_density('g/cm3', 0.48)
 
 
 #> definitions for file specific breeder materials
@@ -173,7 +174,7 @@ Coolant_material.add_element('He',1.0,'ao')
 Coolant_material.set_density('kg/m3',5.0)
 
 
-mat_list= openmc.Materials([Breeder_material, Steel_material, Shielding_material])
+mat_list= openmc.Materials([Breeder_material, Steel_material, Shielding_material, Mult_material])
 mat_list.export_to_xml()
 
 mat_list.cross_sections = "/Users/rocco698/Desktop/JENDL5/jendl-5-hdf5/cross_sections.xml"
@@ -184,7 +185,7 @@ print('materials export success')
 #       GEOMETRY DEFINITION
 # ################################################
 
-dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/CAD_TO_OPENMC/Scaled_STL_output/_scaled.h5m', auto_geom_ids = True)
+dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/CAD_TO_OPENMC/Scaled_STL_output/config4_scaled.h5m', auto_geom_ids = True)
 
 root_cell = openmc.Cell(fill = dag_univ)
 
@@ -314,7 +315,7 @@ breeding_filter = openmc.MaterialFilter(bins = Breeder_material)
 #> tallies for pictures
 tally_f = openmc.Tally(name = 'flux')
 tally_f.filters = [mesh_filter]
-tally_f.scores = ['flux', 'absorption', '(n,t)']
+tally_f.scores = ['flux', 'absorption', '(n,t)', '(n,Xt)']
 
 #> TBR tally
 tally_breeding = openmc.Tally(name = 'Tritium')
@@ -350,18 +351,19 @@ print(settings)
 #  Plots Definition
 # ################################
 
-ww = 2000
+ww = 1500
 plot1 = openmc.Plot()
 plot1.width = (ww,ww)
 plot1.basis = 'yz'
-plot1.pixels = [3840, 2160]
+plot1.pixels = [1920, 1080]
 plot1.color_by = 'material'
 plot1.colors = {
     Breeder_material: 'deeppink',
     Shielding_material: 'black',
     Steel_material: 'blue',
+    Mult_material: 'green',
 }
-plot1.filename = 'TESTIMG'
+plot1.filename = 'TESTIMG_config4'
 plot1.pixels = (900,900)
 plots = openmc.Plots([plot1])
 plots.export_to_xml()

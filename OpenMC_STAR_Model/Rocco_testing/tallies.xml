@@ -13,7 +13,7 @@
   </filter>
   <tally id="1" name="flux">
     <filters>1</filters>
-    <scores>flux absorption (n,t)</scores>
+    <scores>flux absorption (n,t) (n,Xt)</scores>
   </tally>
   <tally id="2" name="Tritium">
     <filters>2</filters>

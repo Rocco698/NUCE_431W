@@ -5,5 +5,7 @@ tallies.out filter=lfs diff=lfs merge=lfs -text
 _scaled.h5m filter=lfs diff=lfs merge=lfs -text
 Breeder_scaled.h5m filter=lfs diff=lfs merge=lfs -text
 tallies.out filter=lfs diff=lfs merge=lfs -text
-Pla-Breed-Mult_scaled.h5m filter=lfs diff=lfs merge=lfs -text
-Pla-Mult-Breed_scaled.h5m filter=lfs diff=lfs merge=lfs -text
+config1_scaled.h5m filter=lfs diff=lfs merge=lfs -text
+config2_scaled.h5m filter=lfs diff=lfs merge=lfs -text
+config3_scaled.h5m filter=lfs diff=lfs merge=lfs -text
+config4_scaled.h5m filter=lfs diff=lfs merge=lfs -text

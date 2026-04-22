@@ -41,9 +41,15 @@ Steel_material.add_element('N', 0.0003, 'wo')
 #> Shielding-B4C
 
 Shielding_material = openmc.Material(name='Shielding_material')
-Shielding_material.add_element('B',4.0,'ao')
-Shielding_material.add_element('C',1.0,'ao')
-Shielding_material.set_density('g/cm3',2.50)
+#Shielding_material.add_element('B',4.0,'ao')
+#Shielding_material.add_element('C',1.0,'ao')
+#Shielding_material.set_density('g/cm3',2.50)
+
+#Shielding_material.add_elements_from_formula('H2O')
+#Shielding_material.set_density('g/cm3', 1.00)
+
+Shielding_material.add_element('Cd', 1.0)
+Shielding_material.set_density('g/cm3', 8.65)
 
 '''
 Shielding_material = openmc.Material(name = 'Shielding_material')
@@ -73,8 +79,11 @@ Copper_material.name = 'Copper_material'
 
 #> MULTIPLIER ONLY
 Mult_material = openmc.Material(name = 'Mult_material')
-Mult_material.add_element('Pb', 1.0)
-Mult_material.set_density('g/cm3', 10.5)
+#Mult_material.add_element('Pb', 1.0)
+#Mult_material.set_density('g/cm3', 10.5)
+
+Mult_material.add_element('Cd', 1.0)
+Mult_material.set_density('g/cm3', 8.65)
 
 #> PbLi (breeder)
 
@@ -83,7 +92,7 @@ Breeder_material.add_element('Pb', 0.83, 'ao')
 #Breeder_material.add_element('Li', 0.17, 'ao', enrichment=90.0, enrichment_target='Li6', enrichment_type='ao')
 Breeder_material.add_element('Li', 0.17, 'ao')
 #Breeder_material.add_element('Li', 1.0, enrichment=90.0, enrichment_target='Li6', enrichment_type='ao')
-Breeder_material.set_density('g/cm3', 0.48)
+Breeder_material.set_density('g/cm3', 9.5)
 
 
 #> definitions for file specific breeder materials
@@ -129,7 +138,7 @@ Breeder_material.set_density('g/cm3', 2.58)
 #> Li2O
 '''
 Breeder_material = openmc.Material(name = 'Breeder_material')
-Breeder_material.add_elements_from_formula('Li2O', enrichment_target='Li6', enrichment=90.0, enrichment_type='ao')
+Breeder_material.add_elements_from_formula('Li2O',enrichment_target='Li6', enrichment=90.0, enrichment_type='ao')
 Breeder_material.set_density('g/cm3', 2.013)
 '''
 #> LiAlO2 
@@ -185,7 +194,7 @@ print('materials export success')
 #       GEOMETRY DEFINITION
 # ################################################
 
-dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/CAD_TO_OPENMC/Scaled_STL_output/config4_scaled.h5m', auto_geom_ids = True)
+dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/CAD_TO_OPENMC/Scaled_STL_output/config1_scaled.h5m', auto_geom_ids = True)
 
 root_cell = openmc.Cell(fill = dag_univ)
 
@@ -363,7 +372,7 @@ plot1.colors = {
     Steel_material: 'blue',
     Mult_material: 'green',
 }
-plot1.filename = 'TESTIMG_config4'
+plot1.filename = 'TESTIMG_config1'
 plot1.pixels = (900,900)
 plots = openmc.Plots([plot1])
 plots.export_to_xml()

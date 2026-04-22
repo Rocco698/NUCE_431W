@@ -24,21 +24,29 @@
     <nuclide name="N15" wo="1.1768360072113027e-06"/>
   </material>
   <material id="2" name="Shielding_material">
-    <density value="2.5" units="g/cm3"/>
-    <nuclide name="B10" ao="0.7928"/>
-    <nuclide name="B11" ao="3.2072"/>
-    <nuclide name="C12" ao="0.988922"/>
-    <nuclide name="C13" ao="0.011078"/>
+    <density value="8.65" units="g/cm3"/>
+    <nuclide name="Cd106" ao="0.01245"/>
+    <nuclide name="Cd108" ao="0.00888"/>
+    <nuclide name="Cd110" ao="0.1247"/>
+    <nuclide name="Cd111" ao="0.12795"/>
+    <nuclide name="Cd112" ao="0.24109"/>
+    <nuclide name="Cd113" ao="0.12227"/>
+    <nuclide name="Cd114" ao="0.28754"/>
+    <nuclide name="Cd116" ao="0.07512"/>
   </material>
   <material id="3" name="Mult_material">
-    <density value="10.5" units="g/cm3"/>
-    <nuclide name="Pb204" ao="0.014"/>
-    <nuclide name="Pb206" ao="0.241"/>
-    <nuclide name="Pb207" ao="0.221"/>
-    <nuclide name="Pb208" ao="0.524"/>
+    <density value="8.65" units="g/cm3"/>
+    <nuclide name="Cd106" ao="0.01245"/>
+    <nuclide name="Cd108" ao="0.00888"/>
+    <nuclide name="Cd110" ao="0.1247"/>
+    <nuclide name="Cd111" ao="0.12795"/>
+    <nuclide name="Cd112" ao="0.24109"/>
+    <nuclide name="Cd113" ao="0.12227"/>
+    <nuclide name="Cd114" ao="0.28754"/>
+    <nuclide name="Cd116" ao="0.07512"/>
   </material>
   <material id="4" name="Breeder_material">
-    <density value="0.48" units="g/cm3"/>
+    <density value="9.5" units="g/cm3"/>
     <nuclide name="Pb204" ao="0.01162"/>
     <nuclide name="Pb206" ao="0.20002999999999999"/>
     <nuclide name="Pb207" ao="0.18342999999999998"/>

@@ -9,3 +9,4 @@ config1_scaled.h5m filter=lfs diff=lfs merge=lfs -text
 config2_scaled.h5m filter=lfs diff=lfs merge=lfs -text
 config3_scaled.h5m filter=lfs diff=lfs merge=lfs -text
 config4_scaled.h5m filter=lfs diff=lfs merge=lfs -text
+config5_scaled.h5m filter=lfs diff=lfs merge=lfs -text

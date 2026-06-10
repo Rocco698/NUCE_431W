@@ -37,7 +37,7 @@
     <nuclide name="Pb207" ao="0.221"/>
     <nuclide name="Pb208" ao="0.524"/>
   </material>
-  <material id="4" name="Breeder_material">
+  <material id="4" name="Breeder_material" temperature="600.0">
     <density value="9.5" units="g/cm3"/>
     <nuclide name="Pb204" ao="0.01162"/>
     <nuclide name="Pb206" ao="0.20002999999999999"/>

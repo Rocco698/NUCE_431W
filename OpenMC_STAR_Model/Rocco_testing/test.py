@@ -96,6 +96,7 @@ Breeder_material.add_element('Li', 0.17, 'ao', enrichment=90.0, enrichment_targe
 
 #Breeder_material.add_element('Li', 1.0)
 Breeder_material.set_density('g/cm3', 9.5)
+Breeder_material.temperature = 600.0
 
 
 #> definitions for file specific breeder materials
@@ -197,7 +198,7 @@ print('materials export success')
 #       GEOMETRY DEFINITION
 # ################################################
 
-dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/CAD_TO_OPENMC/Scaled_STL_output/_scaled.h5m', auto_geom_ids = True)
+dag_univ = openmc.DAGMCUniverse('/Users/rocco698/Desktop/Undergrad/Spring_2026/NUCE_431W/NUCE_431W/OpenMC_STAR_Model/CAD_TO_OPENMC/Scaled_STL_output/config1_scaled.h5m', auto_geom_ids = True)
 
 root_cell = openmc.Cell(fill = dag_univ)
 
@@ -375,7 +376,7 @@ plot1.colors = {
     Steel_material: 'blue',
     Mult_material: 'green',
 }
-plot1.filename = 'TESTIMG'
+plot1.filename = 'TESTIMG_config1'
 plot1.pixels = (900,900)
 plots = openmc.Plots([plot1])
 plots.export_to_xml()
